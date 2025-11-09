@@ -16,7 +16,7 @@ COPY src ./src
 # アプリケーションをビルド
 RUN gradle build --no-daemon -x test
 
-# 実行イメージ
+# 実行イメージ - Java SE 21 LTS (update 5-10対応)
 FROM eclipse-temurin:21-jre-alpine
 
 # wgetをインストール（ヘルスチェック用）
