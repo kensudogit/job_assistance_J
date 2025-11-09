@@ -1,0 +1,34 @@
+# Java Spring Boot Backend with Gradle
+FROM gradle:8.5-jdk21 AS builder
+
+WORKDIR /app
+
+# build.gradle.ktsとsettings.gradle.ktsをコピー
+COPY build.gradle.kts settings.gradle.kts ./
+COPY gradle ./gradle
+
+# 依存関係をダウンロード（キャッシュを活用）
+RUN gradle dependencies --no-daemon || true
+
+# ソースコードをコピー
+COPY src ./src
+
+# アプリケーションをビルド
+RUN gradle build --no-daemon -x test
+
+# 実行イメージ
+FROM eclipse-temurin:21-jre-alpine
+
+# wgetをインストール（ヘルスチェック用）
+RUN apk add --no-cache wget
+
+WORKDIR /app
+
+# ビルドしたJARファイルをコピー
+COPY --from=builder /app/build/libs/*.jar app.jar
+
+# ポート公開
+EXPOSE 5000
+
+# 起動コマンド
+ENTRYPOINT ["java", "-jar", "app.jar"]

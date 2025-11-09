@@ -1,0 +1,17 @@
+# Vercelデプロイ除外ファイル
+build/
+.gradle/
+node_modules/
+src/main/java/
+src/main/resources/
+Dockerfile.*
+docker-compose.yml
+*.md
+!README.md
+gradlew
+gradlew.bat
+gradle/
+pom.xml
+*.jar
+*.war
+
