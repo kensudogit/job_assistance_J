@@ -19,11 +19,15 @@ import java.util.UUID;
 @RequestMapping("/api/auth/mfa")
 public class MFAController {
 
+    /** ユーザーリポジトリ */
     @Autowired
     private UserRepository userRepository;
 
     /**
-     * MFAセットアップ（シークレット生成）
+     * MFAセットアップ（シークレット生成）を実行する
+     *
+     * @param request リクエストデータ（ユーザー名を含む）
+     * @return MFAセットアップ結果を含むレスポンス
      */
     @PostMapping("/setup")
     public ResponseEntity<Map<String, Object>> setupMFA(@RequestBody Map<String, String> request) {
@@ -68,7 +72,10 @@ public class MFAController {
     }
 
     /**
-     * MFA有効化
+     * MFAを有効化する
+     *
+     * @param request リクエストデータ（ユーザー名とMFAコードを含む）
+     * @return MFA有効化結果を含むレスポンス
      */
     @PostMapping("/enable")
     public ResponseEntity<Map<String, Object>> enableMFA(@RequestBody Map<String, String> request) {
@@ -117,7 +124,10 @@ public class MFAController {
     }
 
     /**
-     * MFA無効化
+     * MFAを無効化する
+     *
+     * @param request リクエストデータ（ユーザー名を含む）
+     * @return MFA無効化結果を含むレスポンス
      */
     @PostMapping("/disable")
     public ResponseEntity<Map<String, Object>> disableMFA(@RequestBody Map<String, String> request) {
@@ -157,7 +167,10 @@ public class MFAController {
     }
 
     /**
-     * バックアップコード生成
+     * MFAバックアップコードを生成する
+     *
+     * @param request リクエストデータ（ユーザー名を含む）
+     * @return 生成されたバックアップコードを含むレスポンス
      */
     @PostMapping("/backup-codes")
     public ResponseEntity<Map<String, Object>> generateBackupCodes(@RequestBody Map<String, String> request) {

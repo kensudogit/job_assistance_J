@@ -24,21 +24,32 @@ import java.util.Optional;
 @RequestMapping("/api/workers/{workerId}/evidence-report")
 public class EvidenceReportController {
 
+    /** 就労者リポジトリ */
     @Autowired
     private WorkerRepository workerRepository;
 
+    /** デジタル証拠リポジトリ */
     @Autowired
     private DigitalEvidenceRepository evidenceRepository;
 
+    /** 日本語能力リポジトリ */
     @Autowired
     private JapaneseProficiencyRepository japaneseProficiencyRepository;
 
+    /** 技能訓練リポジトリ */
     @Autowired
     private SkillTrainingRepository skillTrainingRepository;
 
+    /** 建設シミュレーター訓練リポジトリ */
     @Autowired
     private ConstructionSimulatorTrainingRepository simulatorTrainingRepository;
 
+    /**
+     * 就労者の証拠レポートを取得する
+     *
+     * @param workerId 就労者ID
+     * @return 証拠レポートデータを含むレスポンス
+     */
     @GetMapping
     public ResponseEntity<Map<String, Object>> getEvidenceReport(@PathVariable Long workerId) {
         try {

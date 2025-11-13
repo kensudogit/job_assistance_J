@@ -19,17 +19,23 @@ import java.util.Map;
 @RequestMapping("/api/admin")
 public class AdminController {
 
+    /** 就労者リポジトリ */
     @Autowired
     private WorkerRepository workerRepository;
 
+    /** 訓練セッションリポジトリ */
     @Autowired
     private TrainingSessionRepository trainingSessionRepository;
 
+    /** 訓練メニューリポジトリ */
     @Autowired
     private TrainingMenuRepository trainingMenuRepository;
 
     /**
-     * 管理者用サマリー取得
+     * 管理者用サマリー情報を取得する
+     * システム全体の統計情報を返す
+     *
+     * @return サマリー情報を含むレスポンス
      */
     @GetMapping("/summary")
     public ResponseEntity<Map<String, Object>> getAdminSummary() {

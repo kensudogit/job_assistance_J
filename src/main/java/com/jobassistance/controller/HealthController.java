@@ -16,6 +16,12 @@ import java.util.Map;
 @RequestMapping("/api")
 public class HealthController {
 
+    /**
+     * ヘルスチェックを実行する
+     * システムの稼働状態を確認する
+     *
+     * @return システム状態を含むレスポンス
+     */
     @GetMapping("/health")
     public ResponseEntity<Map<String, Object>> health() {
         Map<String, Object> response = new HashMap<>();

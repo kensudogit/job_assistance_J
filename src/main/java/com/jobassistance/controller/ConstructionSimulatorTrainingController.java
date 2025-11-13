@@ -21,12 +21,20 @@ import java.util.Optional;
 @RequestMapping("/api/workers/{workerId}/simulator-training")
 public class ConstructionSimulatorTrainingController {
 
+    /** 建設シミュレーター訓練リポジトリ */
     @Autowired
     private ConstructionSimulatorTrainingRepository trainingRepository;
 
+    /** 就労者リポジトリ */
     @Autowired
     private WorkerRepository workerRepository;
 
+    /**
+     * 就労者の建設シミュレーター訓練一覧を取得する
+     *
+     * @param workerId 就労者ID
+     * @return 訓練一覧を含むレスポンス
+     */
     @GetMapping
     public ResponseEntity<Map<String, Object>> getTrainings(@PathVariable Long workerId) {
         try {
@@ -51,6 +59,13 @@ public class ConstructionSimulatorTrainingController {
         }
     }
 
+    /**
+     * 新しい建設シミュレーター訓練を登録する
+     *
+     * @param workerId 就労者ID
+     * @param trainingData 訓練データ
+     * @return 作成された訓練を含むレスポンス
+     */
     @PostMapping
     public ResponseEntity<Map<String, Object>> createTraining(@PathVariable Long workerId, @RequestBody Map<String, Object> trainingData) {
         try {
@@ -107,6 +122,14 @@ public class ConstructionSimulatorTrainingController {
         }
     }
 
+    /**
+     * 建設シミュレーター訓練情報を更新する
+     *
+     * @param workerId 就労者ID
+     * @param id 訓練ID
+     * @param trainingData 更新する訓練データ
+     * @return 更新された訓練を含むレスポンス
+     */
     @PutMapping("/{id}")
     public ResponseEntity<Map<String, Object>> updateTraining(@PathVariable Long workerId, @PathVariable Long id, @RequestBody Map<String, Object> trainingData) {
         try {
@@ -142,6 +165,13 @@ public class ConstructionSimulatorTrainingController {
         }
     }
 
+    /**
+     * 建設シミュレーター訓練を削除する
+     *
+     * @param workerId 就労者ID
+     * @param id 訓練ID
+     * @return 削除結果を含むレスポンス
+     */
     @DeleteMapping("/{id}")
     public ResponseEntity<Map<String, Object>> deleteTraining(@PathVariable Long workerId, @PathVariable Long id) {
         try {

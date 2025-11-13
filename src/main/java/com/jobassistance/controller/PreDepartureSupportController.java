@@ -20,14 +20,19 @@ import java.util.Optional;
 @RequestMapping("/api/workers/{workerId}/pre-departure-support")
 public class PreDepartureSupportController {
 
+    /** 来日前支援リポジトリ */
     @Autowired
     private PreDepartureSupportRepository preDepartureSupportRepository;
 
+    /** 就労者リポジトリ */
     @Autowired
     private WorkerRepository workerRepository;
 
     /**
-     * 来日前支援一覧取得
+     * 就労者の来日前支援一覧を取得する
+     *
+     * @param workerId 就労者ID
+     * @return 来日前支援一覧を含むレスポンス
      */
     @GetMapping
     public ResponseEntity<Map<String, Object>> getPreDepartureSupportList(@PathVariable Long workerId) {
@@ -53,7 +58,11 @@ public class PreDepartureSupportController {
     }
 
     /**
-     * 来日前支援登録
+     * 新しい来日前支援を登録する
+     *
+     * @param workerId 就労者ID
+     * @param support 来日前支援情報
+     * @return 作成された来日前支援を含むレスポンス
      */
     @PostMapping
     public ResponseEntity<Map<String, Object>> createPreDepartureSupport(@PathVariable Long workerId,
@@ -82,7 +91,11 @@ public class PreDepartureSupportController {
     }
 
     /**
-     * 来日前支援詳細取得
+     * 来日前支援詳細を取得する
+     *
+     * @param workerId 就労者ID
+     * @param id 来日前支援ID
+     * @return 来日前支援詳細を含むレスポンス
      */
     @GetMapping("/{id}")
     public ResponseEntity<Map<String, Object>> getPreDepartureSupport(@PathVariable Long workerId,
@@ -108,7 +121,12 @@ public class PreDepartureSupportController {
     }
 
     /**
-     * 来日前支援更新
+     * 来日前支援情報を更新する
+     *
+     * @param workerId 就労者ID
+     * @param id 来日前支援ID
+     * @param support 更新する来日前支援情報
+     * @return 更新された来日前支援を含むレスポンス
      */
     @PutMapping("/{id}")
     public ResponseEntity<Map<String, Object>> updatePreDepartureSupport(@PathVariable Long workerId,
@@ -137,7 +155,11 @@ public class PreDepartureSupportController {
     }
 
     /**
-     * 来日前支援削除
+     * 来日前支援を削除する
+     *
+     * @param workerId 就労者ID
+     * @param id 来日前支援ID
+     * @return 削除結果を含むレスポンス
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<Map<String, Object>> deletePreDepartureSupport(@PathVariable Long workerId,

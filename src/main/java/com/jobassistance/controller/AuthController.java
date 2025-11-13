@@ -21,13 +21,18 @@ import java.util.Optional;
 @RequestMapping("/api/auth")
 public class AuthController {
 
+    /** ユーザーリポジトリ */
     @Autowired
     private UserRepository userRepository;
 
+    /** パスワードエンコーダー */
     private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     /**
-     * ログイン
+     * ユーザーログインを処理する
+     *
+     * @param credentials ログイン認証情報（ユーザー名とパスワード）
+     * @return ログイン結果を含むレスポンス
      */
     @PostMapping("/login")
     public ResponseEntity<Map<String, Object>> login(@RequestBody Map<String, String> credentials) {
@@ -84,7 +89,9 @@ public class AuthController {
     }
 
     /**
-     * 現在のユーザー情報取得
+     * 現在のユーザー情報を取得する
+     *
+     * @return 現在のユーザー情報を含むレスポンス
      */
     @GetMapping("/current")
     public ResponseEntity<Map<String, Object>> getCurrentUser() {
@@ -103,7 +110,9 @@ public class AuthController {
     }
 
     /**
-     * ログアウト
+     * ユーザーログアウトを処理する
+     *
+     * @return ログアウト結果を含むレスポンス
      */
     @PostMapping("/logout")
     public ResponseEntity<Map<String, Object>> logout() {

@@ -20,14 +20,18 @@ import java.util.Optional;
 @RequestMapping("/api")
 public class NotificationController {
 
+    /** 通知リポジトリ */
     @Autowired
     private NotificationRepository notificationRepository;
 
+    /** 就労者リポジトリ */
     @Autowired
     private WorkerRepository workerRepository;
 
     /**
-     * 全員向け通知一覧取得
+     * 全員向け通知一覧を取得する
+     *
+     * @return 通知一覧を含むレスポンス
      */
     @GetMapping("/notifications")
     public ResponseEntity<Map<String, Object>> getAllNotifications() {
@@ -46,7 +50,10 @@ public class NotificationController {
     }
 
     /**
-     * 全員向け通知登録
+     * 全員向け通知を登録する
+     *
+     * @param notification 通知情報
+     * @return 作成された通知を含むレスポンス
      */
     @PostMapping("/notifications")
     public ResponseEntity<Map<String, Object>> createNotification(@RequestBody Notification notification) {
@@ -66,7 +73,10 @@ public class NotificationController {
     }
 
     /**
-     * 就労者向け通知一覧取得
+     * 就労者向け通知一覧を取得する
+     *
+     * @param workerId 就労者ID
+     * @return 通知一覧を含むレスポンス
      */
     @GetMapping("/workers/{workerId}/notifications")
     public ResponseEntity<Map<String, Object>> getWorkerNotifications(@PathVariable Long workerId) {
@@ -92,7 +102,11 @@ public class NotificationController {
     }
 
     /**
-     * 就労者向け通知登録
+     * 就労者向け通知を登録する
+     *
+     * @param workerId 就労者ID
+     * @param notification 通知情報
+     * @return 作成された通知を含むレスポンス
      */
     @PostMapping("/workers/{workerId}/notifications")
     public ResponseEntity<Map<String, Object>> createWorkerNotification(@PathVariable Long workerId,

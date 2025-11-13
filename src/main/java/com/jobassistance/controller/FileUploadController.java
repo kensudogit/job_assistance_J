@@ -21,14 +21,20 @@ import java.util.Optional;
 @RequestMapping("/api/workers")
 public class FileUploadController {
 
+    /** 就労者リポジトリ */
     @Autowired
     private WorkerRepository workerRepository;
 
+    /** ドキュメントリポジトリ */
     @Autowired
     private DocumentRepository documentRepository;
 
     /**
-     * スクリーンショットアップロード
+     * スクリーンショットをアップロードする
+     *
+     * @param workerId 就労者ID
+     * @param file アップロードするファイル
+     * @return アップロード結果を含むレスポンス
      */
     @PostMapping("/screenshot")
     public ResponseEntity<Map<String, Object>> uploadScreenshot(
@@ -84,7 +90,13 @@ public class FileUploadController {
     }
 
     /**
-     * ドキュメントアップロード
+     * ドキュメントをアップロードする
+     *
+     * @param workerId 就労者ID
+     * @param file アップロードするファイル
+     * @param documentType ドキュメントタイプ
+     * @param title ドキュメントタイトル
+     * @return アップロード結果を含むレスポンス
      */
     @PostMapping("/{workerId}/documents/upload")
     public ResponseEntity<Map<String, Object>> uploadDocument(

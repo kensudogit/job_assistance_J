@@ -20,14 +20,19 @@ import java.util.Optional;
 @RequestMapping("/api/workers/{workerId}/messages")
 public class MessageController {
 
+    /** メッセージリポジトリ */
     @Autowired
     private MessageRepository messageRepository;
 
+    /** 就労者リポジトリ */
     @Autowired
     private WorkerRepository workerRepository;
 
     /**
-     * メッセージ一覧取得
+     * 就労者のメッセージ一覧を取得する
+     *
+     * @param workerId 就労者ID
+     * @return メッセージ一覧を含むレスポンス
      */
     @GetMapping
     public ResponseEntity<Map<String, Object>> getMessageList(@PathVariable Long workerId) {
@@ -53,7 +58,11 @@ public class MessageController {
     }
 
     /**
-     * メッセージ登録
+     * 新しいメッセージを登録する
+     *
+     * @param workerId 就労者ID
+     * @param message メッセージ情報
+     * @return 作成されたメッセージを含むレスポンス
      */
     @PostMapping
     public ResponseEntity<Map<String, Object>> createMessage(@PathVariable Long workerId,
@@ -82,7 +91,11 @@ public class MessageController {
     }
 
     /**
-     * メッセージ詳細取得
+     * メッセージ詳細を取得する
+     *
+     * @param workerId 就労者ID
+     * @param id メッセージID
+     * @return メッセージ詳細を含むレスポンス
      */
     @GetMapping("/{id}")
     public ResponseEntity<Map<String, Object>> getMessage(@PathVariable Long workerId, @PathVariable Long id) {
@@ -107,7 +120,12 @@ public class MessageController {
     }
 
     /**
-     * メッセージ更新
+     * メッセージ情報を更新する
+     *
+     * @param workerId 就労者ID
+     * @param id メッセージID
+     * @param message 更新するメッセージ情報
+     * @return 更新されたメッセージを含むレスポンス
      */
     @PutMapping("/{id}")
     public ResponseEntity<Map<String, Object>> updateMessage(@PathVariable Long workerId, @PathVariable Long id,
@@ -136,7 +154,11 @@ public class MessageController {
     }
 
     /**
-     * メッセージ削除
+     * メッセージを削除する
+     *
+     * @param workerId 就労者ID
+     * @param id メッセージID
+     * @return 削除結果を含むレスポンス
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<Map<String, Object>> deleteMessage(@PathVariable Long workerId, @PathVariable Long id) {

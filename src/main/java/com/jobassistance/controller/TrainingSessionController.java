@@ -20,14 +20,18 @@ import java.util.Optional;
 @RequestMapping("/api/training-sessions")
 public class TrainingSessionController {
 
+    /** 訓練セッションリポジトリ */
     @Autowired
     private TrainingSessionRepository trainingSessionRepository;
 
+    /** 就労者リポジトリ */
     @Autowired
     private WorkerRepository workerRepository;
 
     /**
-     * 訓練セッション一覧取得
+     * 訓練セッション一覧を取得する
+     *
+     * @return 訓練セッション一覧を含むレスポンス
      */
     @GetMapping
     public ResponseEntity<Map<String, Object>> getAllTrainingSessions() {
@@ -46,7 +50,10 @@ public class TrainingSessionController {
     }
 
     /**
-     * 訓練セッション登録
+     * 新しい訓練セッションを登録する
+     *
+     * @param session 訓練セッション情報
+     * @return 作成された訓練セッションを含むレスポンス
      */
     @PostMapping
     public ResponseEntity<Map<String, Object>> createTrainingSession(@RequestBody TrainingSession session) {
@@ -75,7 +82,10 @@ public class TrainingSessionController {
     }
 
     /**
-     * 訓練セッション詳細取得
+     * 訓練セッション詳細を取得する
+     *
+     * @param id 訓練セッションID
+     * @return 訓練セッション詳細を含むレスポンス
      */
     @GetMapping("/{id}")
     public ResponseEntity<Map<String, Object>> getTrainingSession(@PathVariable Long id) {
@@ -100,7 +110,11 @@ public class TrainingSessionController {
     }
 
     /**
-     * 訓練セッション更新
+     * 訓練セッション情報を更新する
+     *
+     * @param id 訓練セッションID
+     * @param session 更新する訓練セッション情報
+     * @return 更新された訓練セッションを含むレスポンス
      */
     @PutMapping("/{id}")
     public ResponseEntity<Map<String, Object>> updateTrainingSession(@PathVariable Long id, @RequestBody TrainingSession session) {
@@ -127,7 +141,10 @@ public class TrainingSessionController {
     }
 
     /**
-     * 訓練セッション削除
+     * 訓練セッションを削除する
+     *
+     * @param id 訓練セッションID
+     * @return 削除結果を含むレスポンス
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<Map<String, Object>> deleteTrainingSession(@PathVariable Long id) {

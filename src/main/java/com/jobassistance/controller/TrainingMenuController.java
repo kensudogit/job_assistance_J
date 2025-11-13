@@ -21,14 +21,18 @@ import java.util.Optional;
 @RequestMapping("/api/training-menus")
 public class TrainingMenuController {
 
+    /** 訓練メニューリポジトリ */
     @Autowired
     private TrainingMenuRepository trainingMenuRepository;
 
+    /** 訓練メニューサービス */
     @Autowired
     private TrainingMenuService trainingMenuService;
 
     /**
-     * 訓練メニュー一覧取得
+     * 訓練メニュー一覧を取得する
+     *
+     * @return 訓練メニュー一覧を含むレスポンス
      */
     @GetMapping
     public ResponseEntity<Map<String, Object>> getAllTrainingMenus() {
@@ -47,7 +51,10 @@ public class TrainingMenuController {
     }
 
     /**
-     * 訓練メニュー登録
+     * 新しい訓練メニューを登録する
+     *
+     * @param menu 訓練メニュー情報
+     * @return 作成された訓練メニューを含むレスポンス
      */
     @PostMapping
     public ResponseEntity<Map<String, Object>> createTrainingMenu(@Valid @RequestBody TrainingMenu menu) {
@@ -66,7 +73,10 @@ public class TrainingMenuController {
     }
 
     /**
-     * 訓練メニュー詳細取得
+     * 訓練メニュー詳細を取得する
+     *
+     * @param id 訓練メニューID
+     * @return 訓練メニュー詳細を含むレスポンス
      */
     @GetMapping("/{id}")
     public ResponseEntity<Map<String, Object>> getTrainingMenu(@PathVariable Long id) {
@@ -91,7 +101,11 @@ public class TrainingMenuController {
     }
 
     /**
-     * 訓練メニュー更新
+     * 訓練メニュー情報を更新する
+     *
+     * @param id 訓練メニューID
+     * @param menu 更新する訓練メニュー情報
+     * @return 更新された訓練メニューを含むレスポンス
      */
     @PutMapping("/{id}")
     public ResponseEntity<Map<String, Object>> updateTrainingMenu(@PathVariable Long id,
@@ -119,7 +133,10 @@ public class TrainingMenuController {
     }
 
     /**
-     * 訓練メニュー削除
+     * 訓練メニューを削除する
+     *
+     * @param id 訓練メニューID
+     * @return 削除結果を含むレスポンス
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<Map<String, Object>> deleteTrainingMenu(@PathVariable Long id) {

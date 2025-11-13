@@ -20,14 +20,18 @@ import java.util.Optional;
 @RequestMapping("/api")
 public class ReportController {
 
+    /** レポートリポジトリ */
     @Autowired
     private ReportRepository reportRepository;
 
+    /** 就労者リポジトリ */
     @Autowired
     private WorkerRepository workerRepository;
 
     /**
-     * 全体レポート一覧取得
+     * 全体レポート一覧を取得する
+     *
+     * @return レポート一覧を含むレスポンス
      */
     @GetMapping("/reports")
     public ResponseEntity<Map<String, Object>> getAllReports() {
@@ -46,7 +50,10 @@ public class ReportController {
     }
 
     /**
-     * 全体レポート登録
+     * 全体レポートを登録する
+     *
+     * @param report レポート情報
+     * @return 作成されたレポートを含むレスポンス
      */
     @PostMapping("/reports")
     public ResponseEntity<Map<String, Object>> createReport(@RequestBody Report report) {
@@ -66,7 +73,10 @@ public class ReportController {
     }
 
     /**
-     * 就労者向けレポート一覧取得
+     * 就労者向けレポート一覧を取得する
+     *
+     * @param workerId 就労者ID
+     * @return レポート一覧を含むレスポンス
      */
     @GetMapping("/workers/{workerId}/reports")
     public ResponseEntity<Map<String, Object>> getWorkerReports(@PathVariable Long workerId) {
@@ -92,7 +102,11 @@ public class ReportController {
     }
 
     /**
-     * 就労者向けレポート登録
+     * 就労者向けレポートを登録する
+     *
+     * @param workerId 就労者ID
+     * @param report レポート情報
+     * @return 作成されたレポートを含むレスポンス
      */
     @PostMapping("/workers/{workerId}/reports")
     public ResponseEntity<Map<String, Object>> createWorkerReport(@PathVariable Long workerId, @RequestBody Report report) {
@@ -120,7 +134,10 @@ public class ReportController {
     }
 
     /**
-     * レポート詳細取得
+     * レポート詳細を取得する
+     *
+     * @param id レポートID
+     * @return レポート詳細を含むレスポンス
      */
     @GetMapping("/reports/{id}")
     public ResponseEntity<Map<String, Object>> getReport(@PathVariable Long id) {
@@ -145,7 +162,11 @@ public class ReportController {
     }
 
     /**
-     * レポート更新
+     * レポート情報を更新する
+     *
+     * @param id レポートID
+     * @param report 更新するレポート情報
+     * @return 更新されたレポートを含むレスポンス
      */
     @PutMapping("/reports/{id}")
     public ResponseEntity<Map<String, Object>> updateReport(@PathVariable Long id, @RequestBody Report report) {
@@ -173,7 +194,10 @@ public class ReportController {
     }
 
     /**
-     * レポート削除
+     * レポートを削除する
+     *
+     * @param id レポートID
+     * @return 削除結果を含むレスポンス
      */
     @DeleteMapping("/reports/{id}")
     public ResponseEntity<Map<String, Object>> deleteReport(@PathVariable Long id) {

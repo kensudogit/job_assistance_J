@@ -12,12 +12,17 @@ import java.util.stream.Collectors;
 
 /**
  * バリデーション例外ハンドラー
+ * リクエストバリデーションエラーを処理する
  */
 @RestControllerAdvice
 public class ValidationExceptionHandler {
 
     /**
-     * バリデーションエラーのハンドリング
+     * バリデーションエラーをハンドリングする
+     * リクエストパラメータの検証エラーを処理し、エラーレスポンスを返す
+     *
+     * @param e バリデーション例外
+     * @return エラーレスポンス
      */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, Object>> handleValidationException(MethodArgumentNotValidException e) {

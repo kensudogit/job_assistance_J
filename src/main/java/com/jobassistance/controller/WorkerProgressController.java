@@ -20,14 +20,19 @@ import java.util.Optional;
 @RequestMapping("/api/workers/{workerId}/progress")
 public class WorkerProgressController {
 
+    /** 就労者進捗リポジトリ */
     @Autowired
     private WorkerProgressRepository progressRepository;
 
+    /** 就労者リポジトリ */
     @Autowired
     private WorkerRepository workerRepository;
 
     /**
-     * 進捗一覧取得
+     * 就労者の進捗一覧を取得する
+     *
+     * @param workerId 就労者ID
+     * @return 進捗一覧を含むレスポンス
      */
     @GetMapping
     public ResponseEntity<Map<String, Object>> getProgressList(@PathVariable Long workerId) {
@@ -53,7 +58,11 @@ public class WorkerProgressController {
     }
 
     /**
-     * 進捗登録
+     * 新しい進捗記録を登録する
+     *
+     * @param workerId 就労者ID
+     * @param progress 進捗情報
+     * @return 作成された進捗記録を含むレスポンス
      */
     @PostMapping
     public ResponseEntity<Map<String, Object>> createProgress(@PathVariable Long workerId,
@@ -82,7 +91,11 @@ public class WorkerProgressController {
     }
 
     /**
-     * 進捗詳細取得
+     * 進捗詳細を取得する
+     *
+     * @param workerId 就労者ID
+     * @param progressId 進捗ID
+     * @return 進捗詳細を含むレスポンス
      */
     @GetMapping("/{progressId}")
     public ResponseEntity<Map<String, Object>> getProgress(@PathVariable Long workerId, @PathVariable Long progressId) {
@@ -107,7 +120,12 @@ public class WorkerProgressController {
     }
 
     /**
-     * 進捗更新
+     * 進捗情報を更新する
+     *
+     * @param workerId 就労者ID
+     * @param progressId 進捗ID
+     * @param progress 更新する進捗情報
+     * @return 更新された進捗記録を含むレスポンス
      */
     @PutMapping("/{progressId}")
     public ResponseEntity<Map<String, Object>> updateProgress(@PathVariable Long workerId,
@@ -136,7 +154,11 @@ public class WorkerProgressController {
     }
 
     /**
-     * 進捗削除
+     * 進捗記録を削除する
+     *
+     * @param workerId 就労者ID
+     * @param progressId 進捗ID
+     * @return 削除結果を含むレスポンス
      */
     @DeleteMapping("/{progressId}")
     public ResponseEntity<Map<String, Object>> deleteProgress(@PathVariable Long workerId,

@@ -20,14 +20,18 @@ import java.util.Optional;
 @RequestMapping("/api")
 public class CalendarEventController {
 
+    /** カレンダーイベントリポジトリ */
     @Autowired
     private CalendarEventRepository calendarEventRepository;
 
+    /** 就労者リポジトリ */
     @Autowired
     private WorkerRepository workerRepository;
 
     /**
-     * 全員向けカレンダーイベント一覧取得
+     * 全員向けカレンダーイベント一覧を取得する
+     *
+     * @return カレンダーイベント一覧を含むレスポンス
      */
     @GetMapping("/calendar")
     public ResponseEntity<Map<String, Object>> getAllCalendarEvents() {
@@ -46,7 +50,10 @@ public class CalendarEventController {
     }
 
     /**
-     * 全員向けカレンダーイベント登録
+     * 全員向けカレンダーイベントを登録する
+     *
+     * @param event カレンダーイベント情報
+     * @return 作成されたカレンダーイベントを含むレスポンス
      */
     @PostMapping("/calendar")
     public ResponseEntity<Map<String, Object>> createCalendarEvent(@RequestBody CalendarEvent event) {
@@ -66,7 +73,10 @@ public class CalendarEventController {
     }
 
     /**
-     * 就労者向けカレンダーイベント一覧取得
+     * 就労者向けカレンダーイベント一覧を取得する
+     *
+     * @param workerId 就労者ID
+     * @return カレンダーイベント一覧を含むレスポンス
      */
     @GetMapping("/workers/{workerId}/calendar")
     public ResponseEntity<Map<String, Object>> getWorkerCalendarEvents(@PathVariable Long workerId) {
@@ -92,7 +102,11 @@ public class CalendarEventController {
     }
 
     /**
-     * 就労者向けカレンダーイベント登録
+     * 就労者向けカレンダーイベントを登録する
+     *
+     * @param workerId 就労者ID
+     * @param event カレンダーイベント情報
+     * @return 作成されたカレンダーイベントを含むレスポンス
      */
     @PostMapping("/workers/{workerId}/calendar")
     public ResponseEntity<Map<String, Object>> createWorkerCalendarEvent(@PathVariable Long workerId, @RequestBody CalendarEvent event) {

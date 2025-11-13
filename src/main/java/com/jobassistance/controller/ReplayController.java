@@ -18,11 +18,15 @@ import java.util.Optional;
 @RequestMapping("/api/replay")
 public class ReplayController {
 
+    /** 訓練セッションリポジトリ */
     @Autowired
     private TrainingSessionRepository trainingSessionRepository;
 
     /**
-     * リプレイセッションデータ取得
+     * リプレイセッションデータを取得する
+     *
+     * @param sessionId セッションID
+     * @return リプレイセッションデータを含むレスポンス
      */
     @GetMapping("/{sessionId}")
     public ResponseEntity<Map<String, Object>> getReplaySession(@PathVariable String sessionId) {

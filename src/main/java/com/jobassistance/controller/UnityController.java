@@ -24,17 +24,23 @@ import java.util.UUID;
 @RequestMapping("/api/unity")
 public class UnityController {
 
+    /** 訓練セッションリポジトリ */
     @Autowired
     private TrainingSessionRepository trainingSessionRepository;
 
+    /** 就労者リポジトリ */
     @Autowired
     private WorkerRepository workerRepository;
 
+    /** 訓練メニューリポジトリ */
     @Autowired
     private TrainingMenuRepository trainingMenuRepository;
 
     /**
-     * Unity訓練セッション作成
+     * Unity訓練セッションを作成する
+     *
+     * @param sessionData セッションデータ
+     * @return 作成されたセッション情報を含むレスポンス
      */
     @PostMapping("/training-session")
     public ResponseEntity<Map<String, Object>> createTrainingSession(@RequestBody Map<String, Object> sessionData) {
@@ -81,7 +87,10 @@ public class UnityController {
     }
 
     /**
-     * Unityコマンド処理
+     * Unityコマンドを処理する
+     *
+     * @param commandData コマンドデータ
+     * @return コマンド処理結果を含むレスポンス
      */
     @PostMapping("/command")
     public ResponseEntity<Map<String, Object>> handleCommand(@RequestBody Map<String, Object> commandData) {

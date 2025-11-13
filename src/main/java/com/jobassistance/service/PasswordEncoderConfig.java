@@ -7,10 +7,17 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
  * パスワードエンコーダー設定クラス
+ * パスワードのハッシュ化に使用するエンコーダーを提供
  */
 @Configuration
 public class PasswordEncoderConfig {
 
+    /**
+     * パスワードエンコーダーのBeanを定義する
+     * BCryptアルゴリズムを使用したパスワードエンコーダーを返す
+     *
+     * @return BCryptPasswordEncoderインスタンス
+     */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();

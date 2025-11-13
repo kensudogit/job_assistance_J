@@ -21,17 +21,23 @@ import java.util.Optional;
 @RequestMapping("/api/workers/{workerId}/training-menu-assignments")
 public class TrainingMenuAssignmentController {
 
+    /** 訓練メニュー割り当てリポジトリ */
     @Autowired
     private TrainingMenuAssignmentRepository assignmentRepository;
 
+    /** 就労者リポジトリ */
     @Autowired
     private WorkerRepository workerRepository;
 
+    /** 訓練メニューリポジトリ */
     @Autowired
     private TrainingMenuRepository trainingMenuRepository;
 
     /**
-     * 訓練メニュー割り当て一覧取得
+     * 就労者の訓練メニュー割り当て一覧を取得する
+     *
+     * @param workerId 就労者ID
+     * @return 訓練メニュー割り当て一覧を含むレスポンス
      */
     @GetMapping
     public ResponseEntity<Map<String, Object>> getAssignmentList(@PathVariable Long workerId) {
@@ -57,7 +63,11 @@ public class TrainingMenuAssignmentController {
     }
 
     /**
-     * 訓練メニュー割り当て登録
+     * 新しい訓練メニュー割り当てを登録する
+     *
+     * @param workerId 就労者ID
+     * @param assignment 訓練メニュー割り当て情報
+     * @return 作成された訓練メニュー割り当てを含むレスポンス
      */
     @PostMapping
     public ResponseEntity<Map<String, Object>> createAssignment(@PathVariable Long workerId,
@@ -98,7 +108,11 @@ public class TrainingMenuAssignmentController {
     }
 
     /**
-     * 訓練メニュー割り当て詳細取得
+     * 訓練メニュー割り当て詳細を取得する
+     *
+     * @param workerId 就労者ID
+     * @param id 訓練メニュー割り当てID
+     * @return 訓練メニュー割り当て詳細を含むレスポンス
      */
     @GetMapping("/{id}")
     public ResponseEntity<Map<String, Object>> getAssignment(@PathVariable Long workerId, @PathVariable Long id) {
@@ -123,7 +137,12 @@ public class TrainingMenuAssignmentController {
     }
 
     /**
-     * 訓練メニュー割り当て更新
+     * 訓練メニュー割り当て情報を更新する
+     *
+     * @param workerId 就労者ID
+     * @param id 訓練メニュー割り当てID
+     * @param assignment 更新する訓練メニュー割り当て情報
+     * @return 更新された訓練メニュー割り当てを含むレスポンス
      */
     @PutMapping("/{id}")
     public ResponseEntity<Map<String, Object>> updateAssignment(@PathVariable Long workerId, @PathVariable Long id,
@@ -161,7 +180,11 @@ public class TrainingMenuAssignmentController {
     }
 
     /**
-     * 訓練メニュー割り当て削除
+     * 訓練メニュー割り当てを削除する
+     *
+     * @param workerId 就労者ID
+     * @param id 訓練メニュー割り当てID
+     * @return 削除結果を含むレスポンス
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<Map<String, Object>> deleteAssignment(@PathVariable Long workerId, @PathVariable Long id) {

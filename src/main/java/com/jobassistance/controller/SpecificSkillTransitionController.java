@@ -21,12 +21,20 @@ import java.util.Optional;
 @RequestMapping("/api/workers/{workerId}/specific-skill-transition")
 public class SpecificSkillTransitionController {
 
+    /** 特定技能移行リポジトリ */
     @Autowired
     private SpecificSkillTransitionRepository transitionRepository;
 
+    /** 就労者リポジトリ */
     @Autowired
     private WorkerRepository workerRepository;
 
+    /**
+     * 就労者の特定技能移行記録一覧を取得する
+     *
+     * @param workerId 就労者ID
+     * @return 特定技能移行記録一覧を含むレスポンス
+     */
     @GetMapping
     public ResponseEntity<Map<String, Object>> getTransitions(@PathVariable Long workerId) {
         try {
@@ -51,6 +59,13 @@ public class SpecificSkillTransitionController {
         }
     }
 
+    /**
+     * 新しい特定技能移行記録を登録する
+     *
+     * @param workerId 就労者ID
+     * @param transitionData 特定技能移行データ
+     * @return 作成された特定技能移行記録を含むレスポンス
+     */
     @PostMapping
     public ResponseEntity<Map<String, Object>> createTransition(@PathVariable Long workerId, @RequestBody Map<String, Object> transitionData) {
         try {
@@ -91,6 +106,14 @@ public class SpecificSkillTransitionController {
         }
     }
 
+    /**
+     * 特定技能移行記録情報を更新する
+     *
+     * @param workerId 就労者ID
+     * @param id 特定技能移行記録ID
+     * @param transitionData 更新する特定技能移行データ
+     * @return 更新された特定技能移行記録を含むレスポンス
+     */
     @PutMapping("/{id}")
     public ResponseEntity<Map<String, Object>> updateTransition(@PathVariable Long workerId, @PathVariable Long id, @RequestBody Map<String, Object> transitionData) {
         try {
@@ -123,6 +146,13 @@ public class SpecificSkillTransitionController {
         }
     }
 
+    /**
+     * 特定技能移行記録を削除する
+     *
+     * @param workerId 就労者ID
+     * @param id 特定技能移行記録ID
+     * @return 削除結果を含むレスポンス
+     */
     @DeleteMapping("/{id}")
     public ResponseEntity<Map<String, Object>> deleteTransition(@PathVariable Long workerId, @PathVariable Long id) {
         try {

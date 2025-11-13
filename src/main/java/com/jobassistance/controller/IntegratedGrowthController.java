@@ -21,12 +21,20 @@ import java.util.Optional;
 @RequestMapping("/api/workers/{workerId}/integrated-growth")
 public class IntegratedGrowthController {
 
+    /** 統合成長リポジトリ */
     @Autowired
     private IntegratedGrowthRepository growthRepository;
 
+    /** 就労者リポジトリ */
     @Autowired
     private WorkerRepository workerRepository;
 
+    /**
+     * 就労者の統合成長記録一覧を取得する
+     *
+     * @param workerId 就労者ID
+     * @return 統合成長記録一覧を含むレスポンス
+     */
     @GetMapping
     public ResponseEntity<Map<String, Object>> getGrowths(@PathVariable Long workerId) {
         try {
@@ -51,6 +59,13 @@ public class IntegratedGrowthController {
         }
     }
 
+    /**
+     * 新しい統合成長記録を登録する
+     *
+     * @param workerId 就労者ID
+     * @param growthData 統合成長データ
+     * @return 作成された統合成長記録を含むレスポンス
+     */
     @PostMapping
     public ResponseEntity<Map<String, Object>> createGrowth(@PathVariable Long workerId,
             @RequestBody Map<String, Object> growthData) {
@@ -102,6 +117,14 @@ public class IntegratedGrowthController {
         }
     }
 
+    /**
+     * 統合成長記録情報を更新する
+     *
+     * @param workerId 就労者ID
+     * @param id 統合成長記録ID
+     * @param growthData 更新する統合成長データ
+     * @return 更新された統合成長記録を含むレスポンス
+     */
     @PutMapping("/{id}")
     public ResponseEntity<Map<String, Object>> updateGrowth(@PathVariable Long workerId, @PathVariable Long id,
             @RequestBody Map<String, Object> growthData) {
@@ -132,6 +155,13 @@ public class IntegratedGrowthController {
         }
     }
 
+    /**
+     * 統合成長記録を削除する
+     *
+     * @param workerId 就労者ID
+     * @param id 統合成長記録ID
+     * @return 削除結果を含むレスポンス
+     */
     @DeleteMapping("/{id}")
     public ResponseEntity<Map<String, Object>> deleteGrowth(@PathVariable Long workerId, @PathVariable Long id) {
         try {

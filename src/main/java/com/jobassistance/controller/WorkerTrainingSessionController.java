@@ -19,14 +19,19 @@ import java.util.Map;
 @RequestMapping("/api/workers/{workerId}/training-sessions")
 public class WorkerTrainingSessionController {
 
+    /** 訓練セッションリポジトリ */
     @Autowired
     private TrainingSessionRepository trainingSessionRepository;
 
+    /** 就労者リポジトリ */
     @Autowired
     private WorkerRepository workerRepository;
 
     /**
-     * 就労者向け訓練セッション一覧取得
+     * 就労者の訓練セッション一覧を取得する
+     *
+     * @param workerId 就労者ID
+     * @return 訓練セッション一覧を含むレスポンス
      */
     @GetMapping
     public ResponseEntity<Map<String, Object>> getWorkerTrainingSessions(@PathVariable Long workerId) {

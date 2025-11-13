@@ -20,13 +20,17 @@ import java.util.Optional;
 @RequestMapping("/api/users")
 public class UserController {
 
+    /** ユーザーリポジトリ */
     @Autowired
     private UserRepository userRepository;
 
+    /** パスワードエンコーダー */
     private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     /**
-     * ユーザー一覧取得
+     * ユーザー一覧を取得する
+     *
+     * @return ユーザー一覧を含むレスポンス
      */
     @GetMapping
     public ResponseEntity<Map<String, Object>> getAllUsers() {
@@ -48,7 +52,10 @@ public class UserController {
     }
 
     /**
-     * ユーザー登録
+     * 新しいユーザーを登録する
+     *
+     * @param userData ユーザーデータ
+     * @return 作成されたユーザーを含むレスポンス
      */
     @PostMapping
     public ResponseEntity<Map<String, Object>> createUser(@RequestBody Map<String, String> userData) {
@@ -102,7 +109,10 @@ public class UserController {
     }
 
     /**
-     * ユーザー詳細取得
+     * ユーザー詳細を取得する
+     *
+     * @param id ユーザーID
+     * @return ユーザー詳細を含むレスポンス
      */
     @GetMapping("/{id}")
     public ResponseEntity<Map<String, Object>> getUser(@PathVariable Long id) {
@@ -128,7 +138,11 @@ public class UserController {
     }
 
     /**
-     * ユーザー更新
+     * ユーザー情報を更新する
+     *
+     * @param id ユーザーID
+     * @param userData 更新するユーザーデータ
+     * @return 更新されたユーザーを含むレスポンス
      */
     @PutMapping("/{id}")
     public ResponseEntity<Map<String, Object>> updateUser(@PathVariable Long id, @RequestBody Map<String, String> userData) {
@@ -170,7 +184,10 @@ public class UserController {
     }
 
     /**
-     * ユーザー削除
+     * ユーザーを削除する
+     *
+     * @param id ユーザーID
+     * @return 削除結果を含むレスポンス
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<Map<String, Object>> deleteUser(@PathVariable Long id) {

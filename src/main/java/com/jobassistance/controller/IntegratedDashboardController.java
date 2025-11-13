@@ -18,30 +18,44 @@ import java.util.Optional;
 @RequestMapping("/api/workers/{workerId}/dashboard/integrated")
 public class IntegratedDashboardController {
 
+    /** 就労者リポジトリ */
     @Autowired
     private WorkerRepository workerRepository;
 
+    /** 就労者進捗リポジトリ */
     @Autowired
     private WorkerProgressRepository progressRepository;
 
+    /** 日本語能力リポジトリ */
     @Autowired
     private JapaneseProficiencyRepository japaneseProficiencyRepository;
 
+    /** 技能訓練リポジトリ */
     @Autowired
     private SkillTrainingRepository skillTrainingRepository;
 
+    /** 建設シミュレーター訓練リポジトリ */
     @Autowired
     private ConstructionSimulatorTrainingRepository simulatorTrainingRepository;
 
+    /** 統合成長リポジトリ */
     @Autowired
     private IntegratedGrowthRepository integratedGrowthRepository;
 
+    /** マイルストーンリポジトリ */
     @Autowired
     private MilestoneRepository milestoneRepository;
 
+    /** キャリア目標リポジトリ */
     @Autowired
     private CareerGoalRepository careerGoalRepository;
 
+    /**
+     * 就労者の統合ダッシュボード情報を取得する
+     *
+     * @param workerId 就労者ID
+     * @return 統合ダッシュボードデータを含むレスポンス
+     */
     @GetMapping
     public ResponseEntity<Map<String, Object>> getIntegratedDashboard(@PathVariable Long workerId) {
         try {
