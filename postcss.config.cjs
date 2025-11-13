@@ -4,7 +4,7 @@
  */
 module.exports = {
   plugins: {
-    '@tailwindcss/postcss': {},  // Tailwind CSS v4のPostCSSプラグイン
+    tailwindcss: {},             // Tailwind CSS v3のPostCSSプラグイン
     autoprefixer: {},            // ベンダープレフィックスを自動追加
   },
 };
