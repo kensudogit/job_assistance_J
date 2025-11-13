@@ -11,7 +11,6 @@ import java.util.List;
  */
 @Repository
 public interface ConstructionSimulatorTrainingRepository extends JpaRepository<ConstructionSimulatorTraining, Long> {
-    
+
     List<ConstructionSimulatorTraining> findByWorkerId(Long workerId);
 }
-

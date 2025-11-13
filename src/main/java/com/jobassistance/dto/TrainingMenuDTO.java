@@ -48,4 +48,3 @@ public class TrainingMenuDTO {
     @Size(max = 100, message = "作成者は100文字以内で入力してください")
     private String createdBy;
 }
-

@@ -21,14 +21,18 @@ import java.util.Optional;
 @RequestMapping("/api/workers")
 public class WorkerController {
 
+    /** 就労者リポジトリ */
     @Autowired
     private WorkerRepository workerRepository;
 
+    /** 就労者サービス */
     @Autowired
     private WorkerService workerService;
 
     /**
-     * 就労者一覧取得
+     * すべての就労者一覧を取得する
+     * 
+     * @return 就労者一覧を含むレスポンス
      */
     @GetMapping
     public ResponseEntity<Map<String, Object>> getAllWorkers() {
@@ -47,7 +51,10 @@ public class WorkerController {
     }
 
     /**
-     * 就労者登録
+     * 新しい就労者を登録する
+     * 
+     * @param worker 就労者情報
+     * @return 作成された就労者を含むレスポンス
      */
     @PostMapping
     public ResponseEntity<Map<String, Object>> createWorker(@Valid @RequestBody Worker worker) {
@@ -66,7 +73,10 @@ public class WorkerController {
     }
 
     /**
-     * 就労者詳細取得
+     * 指定されたIDの就労者詳細を取得する
+     * 
+     * @param id 就労者ID
+     * @return 就労者詳細を含むレスポンス
      */
     @GetMapping("/{id}")
     public ResponseEntity<Map<String, Object>> getWorker(@PathVariable Long id) {
@@ -91,7 +101,11 @@ public class WorkerController {
     }
 
     /**
-     * 就労者更新
+     * 就労者情報を更新する
+     * 
+     * @param id 就労者ID
+     * @param worker 更新する就労者情報
+     * @return 更新された就労者を含むレスポンス
      */
     @PutMapping("/{id}")
     public ResponseEntity<Map<String, Object>> updateWorker(@PathVariable Long id, @Valid @RequestBody Worker worker) {
@@ -118,7 +132,10 @@ public class WorkerController {
     }
 
     /**
-     * 就労者削除
+     * 就労者を削除する
+     * 
+     * @param id 就労者ID
+     * @return 削除結果を含むレスポンス
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<Map<String, Object>> deleteWorker(@PathVariable Long id) {

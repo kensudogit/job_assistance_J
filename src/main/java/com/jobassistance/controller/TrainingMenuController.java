@@ -94,7 +94,8 @@ public class TrainingMenuController {
      * 訓練メニュー更新
      */
     @PutMapping("/{id}")
-    public ResponseEntity<Map<String, Object>> updateTrainingMenu(@PathVariable Long id, @Valid @RequestBody TrainingMenu menu) {
+    public ResponseEntity<Map<String, Object>> updateTrainingMenu(@PathVariable Long id,
+            @Valid @RequestBody TrainingMenu menu) {
         try {
             Optional<TrainingMenu> existingMenu = trainingMenuRepository.findById(id);
             Map<String, Object> response = new HashMap<>();
@@ -143,4 +144,3 @@ public class TrainingMenuController {
         }
     }
 }
-

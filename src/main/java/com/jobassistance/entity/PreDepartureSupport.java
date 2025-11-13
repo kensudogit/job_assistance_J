@@ -68,4 +68,3 @@ public class PreDepartureSupport {
     @Column(nullable = false)
     private LocalDateTime updatedAt;
 }
-

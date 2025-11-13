@@ -19,11 +19,14 @@ import java.util.Optional;
 @RequestMapping("/api/trainings")
 public class TrainingController {
 
+    /** 研修リポジトリ */
     @Autowired
     private TrainingRepository trainingRepository;
 
     /**
-     * 研修一覧取得
+     * すべての研修一覧を取得する
+     * 
+     * @return 研修一覧を含むレスポンス
      */
     @GetMapping
     public ResponseEntity<Map<String, Object>> getAllTrainings() {
@@ -42,7 +45,10 @@ public class TrainingController {
     }
 
     /**
-     * 研修登録
+     * 新しい研修を登録する
+     * 
+     * @param training 研修情報
+     * @return 作成された研修を含むレスポンス
      */
     @PostMapping
     public ResponseEntity<Map<String, Object>> createTraining(@RequestBody Training training) {
@@ -61,7 +67,10 @@ public class TrainingController {
     }
 
     /**
-     * 研修詳細取得
+     * 指定されたIDの研修詳細を取得する
+     * 
+     * @param id 研修ID
+     * @return 研修詳細を含むレスポンス
      */
     @GetMapping("/{id}")
     public ResponseEntity<Map<String, Object>> getTraining(@PathVariable Long id) {
@@ -86,7 +95,11 @@ public class TrainingController {
     }
 
     /**
-     * 研修更新
+     * 研修情報を更新する
+     * 
+     * @param id 研修ID
+     * @param training 更新する研修情報
+     * @return 更新された研修を含むレスポンス
      */
     @PutMapping("/{id}")
     public ResponseEntity<Map<String, Object>> updateTraining(@PathVariable Long id, @RequestBody Training training) {
@@ -113,7 +126,10 @@ public class TrainingController {
     }
 
     /**
-     * 研修削除
+     * 研修を削除する
+     * 
+     * @param id 研修ID
+     * @return 削除結果を含むレスポンス
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<Map<String, Object>> deleteTraining(@PathVariable Long id) {
@@ -138,4 +154,3 @@ public class TrainingController {
         }
     }
 }
-

@@ -95,7 +95,8 @@ public class NotificationController {
      * 就労者向け通知登録
      */
     @PostMapping("/workers/{workerId}/notifications")
-    public ResponseEntity<Map<String, Object>> createWorkerNotification(@PathVariable Long workerId, @RequestBody Notification notification) {
+    public ResponseEntity<Map<String, Object>> createWorkerNotification(@PathVariable Long workerId,
+            @RequestBody Notification notification) {
         try {
             Optional<com.jobassistance.entity.Worker> worker = workerRepository.findById(workerId);
             if (!worker.isPresent()) {
@@ -119,4 +120,3 @@ public class NotificationController {
         }
     }
 }
-

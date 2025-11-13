@@ -11,7 +11,6 @@ import java.util.List;
  */
 @Repository
 public interface SpecificSkillTransitionRepository extends JpaRepository<SpecificSkillTransition, Long> {
-    
+
     List<SpecificSkillTransition> findByWorkerId(Long workerId);
 }
-

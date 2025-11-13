@@ -21,14 +21,19 @@ import java.util.Optional;
 @RequestMapping("/api/workers/{workerId}/milestones")
 public class MilestoneController {
 
+    /** マイルストーンリポジトリ */
     @Autowired
     private MilestoneRepository milestoneRepository;
 
+    /** 就労者リポジトリ */
     @Autowired
     private WorkerRepository workerRepository;
 
     /**
-     * マイルストーン一覧取得
+     * 就労者のマイルストーン一覧を取得する
+     * 
+     * @param workerId 就労者ID
+     * @return マイルストーン一覧を含むレスポンス
      */
     @GetMapping
     public ResponseEntity<Map<String, Object>> getMilestones(@PathVariable Long workerId) {
@@ -55,10 +60,15 @@ public class MilestoneController {
     }
 
     /**
-     * マイルストーン登録
+     * 新しいマイルストーンを作成する
+     * 
+     * @param workerId 就労者ID
+     * @param milestoneData マイルストーンデータ
+     * @return 作成されたマイルストーンを含むレスポンス
      */
     @PostMapping
-    public ResponseEntity<Map<String, Object>> createMilestone(@PathVariable Long workerId, @RequestBody Map<String, Object> milestoneData) {
+    public ResponseEntity<Map<String, Object>> createMilestone(@PathVariable Long workerId,
+            @RequestBody Map<String, Object> milestoneData) {
         try {
             Optional<Worker> worker = workerRepository.findById(workerId);
             if (!worker.isPresent()) {
@@ -97,10 +107,16 @@ public class MilestoneController {
     }
 
     /**
-     * マイルストーン更新
+     * マイルストーンを更新する
+     * 
+     * @param workerId 就労者ID
+     * @param id マイルストーンID
+     * @param milestoneData 更新するマイルストーンデータ
+     * @return 更新されたマイルストーンを含むレスポンス
      */
     @PutMapping("/{id}")
-    public ResponseEntity<Map<String, Object>> updateMilestone(@PathVariable Long workerId, @PathVariable Long id, @RequestBody Map<String, Object> milestoneData) {
+    public ResponseEntity<Map<String, Object>> updateMilestone(@PathVariable Long workerId, @PathVariable Long id,
+            @RequestBody Map<String, Object> milestoneData) {
         try {
             Optional<Milestone> milestone = milestoneRepository.findById(id);
             if (!milestone.isPresent() || !milestone.get().getWorker().getId().equals(workerId)) {
@@ -144,7 +160,11 @@ public class MilestoneController {
     }
 
     /**
-     * マイルストーン削除
+     * マイルストーンを削除する
+     * 
+     * @param workerId 就労者ID
+     * @param id マイルストーンID
+     * @return 削除結果を含むレスポンス
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<Map<String, Object>> deleteMilestone(@PathVariable Long workerId, @PathVariable Long id) {
@@ -170,4 +190,3 @@ public class MilestoneController {
         }
     }
 }
-

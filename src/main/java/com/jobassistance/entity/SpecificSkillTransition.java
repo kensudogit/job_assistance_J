@@ -65,4 +65,3 @@ public class SpecificSkillTransition {
     @Column(nullable = false)
     private LocalDateTime updatedAt;
 }
-

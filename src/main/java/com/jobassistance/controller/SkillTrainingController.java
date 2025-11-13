@@ -56,7 +56,8 @@ public class SkillTrainingController {
      * 技能訓練登録
      */
     @PostMapping
-    public ResponseEntity<Map<String, Object>> createSkillTraining(@PathVariable Long workerId, @RequestBody SkillTraining training) {
+    public ResponseEntity<Map<String, Object>> createSkillTraining(@PathVariable Long workerId,
+            @RequestBody SkillTraining training) {
         try {
             Optional<com.jobassistance.entity.Worker> worker = workerRepository.findById(workerId);
             if (!worker.isPresent()) {
@@ -109,7 +110,8 @@ public class SkillTrainingController {
      * 技能訓練更新
      */
     @PutMapping("/{id}")
-    public ResponseEntity<Map<String, Object>> updateSkillTraining(@PathVariable Long workerId, @PathVariable Long id, @RequestBody SkillTraining training) {
+    public ResponseEntity<Map<String, Object>> updateSkillTraining(@PathVariable Long workerId, @PathVariable Long id,
+            @RequestBody SkillTraining training) {
         try {
             Optional<SkillTraining> existingTraining = skillTrainingRepository.findById(id);
             Map<String, Object> response = new HashMap<>();
@@ -159,4 +161,3 @@ public class SkillTrainingController {
         }
     }
 }
-

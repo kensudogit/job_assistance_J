@@ -19,12 +19,12 @@ import java.util.List;
 @Entity
 @Table(name = "workers")
 @Data
-@EqualsAndHashCode(exclude = {"progressRecords", "documents", "notifications", "trainingEnrollments", 
-                              "evaluations", "messages", "calendarEvents", "reports", "japaneseProficiencies",
-                              "skillTrainings", "japaneseLearningRecords", "preDepartureSupports"})
-@ToString(exclude = {"progressRecords", "documents", "notifications", "trainingEnrollments",
-                     "evaluations", "messages", "calendarEvents", "reports", "japaneseProficiencies",
-                     "skillTrainings", "japaneseLearningRecords", "preDepartureSupports"})
+@EqualsAndHashCode(exclude = { "progressRecords", "documents", "notifications", "trainingEnrollments",
+        "evaluations", "messages", "calendarEvents", "reports", "japaneseProficiencies",
+        "skillTrainings", "japaneseLearningRecords", "preDepartureSupports" })
+@ToString(exclude = { "progressRecords", "documents", "notifications", "trainingEnrollments",
+        "evaluations", "messages", "calendarEvents", "reports", "japaneseProficiencies",
+        "skillTrainings", "japaneseLearningRecords", "preDepartureSupports" })
 @EntityListeners(AuditingEntityListener.class)
 public class Worker {
 
@@ -128,4 +128,3 @@ public class Worker {
     @OneToMany(mappedBy = "worker", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PreDepartureSupport> preDepartureSupports = new ArrayList<>();
 }
-

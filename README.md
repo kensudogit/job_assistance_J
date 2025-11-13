@@ -433,7 +433,7 @@ APIリクエストのバリデーションが実装されています：
 - エラーメッセージの自動生成
 - バリデーション例外のハンドリング
 
-## Vercelデプロイ（完全互換モード）
+## Vercelデプロイ（完全公開モード）
 
 フロントエンドをVercelにデプロイする場合、以下の手順に従ってください。
 
@@ -463,16 +463,24 @@ APIリクエストのバリデーションが実装されています：
      - 環境変数 `VITE_API_BASE_URL` を設定
      - デプロイ
 
-3. **CORS設定**
-   - バックエンドの`application.properties`でCORSを設定:
+3. **CORS設定（完全公開モード）**
+   - バックエンドの`application-prod.properties`でCORSを設定:
      ```properties
-     spring.web.cors.allowed-origins=https://your-vercel-app.vercel.app
-     spring.web.cors.allowed-methods=GET,POST,PUT,DELETE,OPTIONS
+     # 完全公開モード: すべてのオリジンを許可
+     spring.web.cors.allowed-origins=*
+     spring.web.cors.allowed-methods=GET,POST,PUT,DELETE,OPTIONS,PATCH
      spring.web.cors.allowed-headers=*
      spring.web.cors.allow-credentials=true
+     spring.web.cors.max-age=86400
+     ```
+   - または、環境変数で設定:
+     ```env
+     CORS_ORIGINS=*
      ```
 
-詳細な手順は `DEPLOY_VERCEL.md` を参照してください。
+**注意**: 完全公開モードではすべてのオリジンからのアクセスを許可します。本番環境では、特定のオリジンを指定することを推奨します。
+
+詳細な手順は `DEPLOY_VERCEL.md` または `DEPLOY_PUBLIC.md` を参照してください。
 
 ## ライセンス
 

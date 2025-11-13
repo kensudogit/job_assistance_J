@@ -83,4 +83,3 @@ public class WorkerService {
         return workerRepository.findByCurrentStatus(status);
     }
 }
-

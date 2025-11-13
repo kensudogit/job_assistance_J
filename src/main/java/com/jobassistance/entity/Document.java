@@ -71,4 +71,3 @@ public class Document {
     @Column(nullable = false)
     private LocalDateTime updatedAt;
 }
-

@@ -68,4 +68,3 @@ public class CareerGoal {
     @Column(nullable = false)
     private LocalDateTime updatedAt;
 }
-

@@ -59,4 +59,3 @@ public class Milestone {
     @Column(nullable = false)
     private LocalDateTime updatedAt;
 }
-

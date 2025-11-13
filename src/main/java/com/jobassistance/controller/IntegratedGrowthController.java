@@ -52,7 +52,8 @@ public class IntegratedGrowthController {
     }
 
     @PostMapping
-    public ResponseEntity<Map<String, Object>> createGrowth(@PathVariable Long workerId, @RequestBody Map<String, Object> growthData) {
+    public ResponseEntity<Map<String, Object>> createGrowth(@PathVariable Long workerId,
+            @RequestBody Map<String, Object> growthData) {
         try {
             Optional<Worker> worker = workerRepository.findById(workerId);
             if (!worker.isPresent()) {
@@ -102,7 +103,8 @@ public class IntegratedGrowthController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Map<String, Object>> updateGrowth(@PathVariable Long workerId, @PathVariable Long id, @RequestBody Map<String, Object> growthData) {
+    public ResponseEntity<Map<String, Object>> updateGrowth(@PathVariable Long workerId, @PathVariable Long id,
+            @RequestBody Map<String, Object> growthData) {
         try {
             Optional<IntegratedGrowth> growth = growthRepository.findById(id);
             if (!growth.isPresent() || !growth.get().getWorker().getId().equals(workerId)) {
@@ -154,4 +156,3 @@ public class IntegratedGrowthController {
         }
     }
 }
-

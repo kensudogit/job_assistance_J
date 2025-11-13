@@ -56,7 +56,8 @@ public class WorkerProgressController {
      * 進捗登録
      */
     @PostMapping
-    public ResponseEntity<Map<String, Object>> createProgress(@PathVariable Long workerId, @RequestBody WorkerProgress progress) {
+    public ResponseEntity<Map<String, Object>> createProgress(@PathVariable Long workerId,
+            @RequestBody WorkerProgress progress) {
         try {
             Optional<com.jobassistance.entity.Worker> worker = workerRepository.findById(workerId);
             if (!worker.isPresent()) {
@@ -109,7 +110,8 @@ public class WorkerProgressController {
      * 進捗更新
      */
     @PutMapping("/{progressId}")
-    public ResponseEntity<Map<String, Object>> updateProgress(@PathVariable Long workerId, @PathVariable Long progressId, @RequestBody WorkerProgress progress) {
+    public ResponseEntity<Map<String, Object>> updateProgress(@PathVariable Long workerId,
+            @PathVariable Long progressId, @RequestBody WorkerProgress progress) {
         try {
             Optional<WorkerProgress> existingProgress = progressRepository.findById(progressId);
             Map<String, Object> response = new HashMap<>();
@@ -137,7 +139,8 @@ public class WorkerProgressController {
      * 進捗削除
      */
     @DeleteMapping("/{progressId}")
-    public ResponseEntity<Map<String, Object>> deleteProgress(@PathVariable Long workerId, @PathVariable Long progressId) {
+    public ResponseEntity<Map<String, Object>> deleteProgress(@PathVariable Long workerId,
+            @PathVariable Long progressId) {
         try {
             Optional<WorkerProgress> progress = progressRepository.findById(progressId);
             Map<String, Object> response = new HashMap<>();
@@ -159,4 +162,3 @@ public class WorkerProgressController {
         }
     }
 }
-

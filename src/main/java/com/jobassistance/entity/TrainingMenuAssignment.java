@@ -17,8 +17,8 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "training_menu_assignments")
 @Data
-@EqualsAndHashCode(exclude = {"worker", "trainingMenu"})
-@ToString(exclude = {"worker", "trainingMenu"})
+@EqualsAndHashCode(exclude = { "worker", "trainingMenu" })
+@ToString(exclude = { "worker", "trainingMenu" })
 @EntityListeners(AuditingEntityListener.class)
 public class TrainingMenuAssignment {
 
@@ -57,4 +57,3 @@ public class TrainingMenuAssignment {
     @Column(nullable = false)
     private LocalDateTime updatedAt;
 }
-

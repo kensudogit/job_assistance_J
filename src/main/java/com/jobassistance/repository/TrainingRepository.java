@@ -11,9 +11,8 @@ import java.util.List;
  */
 @Repository
 public interface TrainingRepository extends JpaRepository<Training, Long> {
-    
+
     List<Training> findByStatus(String status);
-    
+
     List<Training> findByTrainingType(String trainingType);
 }
-

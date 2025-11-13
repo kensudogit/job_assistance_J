@@ -65,4 +65,3 @@ public class WorkerProgress {
     @Column(nullable = false)
     private LocalDateTime updatedAt;
 }
-

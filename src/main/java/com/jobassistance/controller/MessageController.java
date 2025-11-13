@@ -56,7 +56,8 @@ public class MessageController {
      * メッセージ登録
      */
     @PostMapping
-    public ResponseEntity<Map<String, Object>> createMessage(@PathVariable Long workerId, @RequestBody Message message) {
+    public ResponseEntity<Map<String, Object>> createMessage(@PathVariable Long workerId,
+            @RequestBody Message message) {
         try {
             Optional<com.jobassistance.entity.Worker> worker = workerRepository.findById(workerId);
             if (!worker.isPresent()) {
@@ -109,7 +110,8 @@ public class MessageController {
      * メッセージ更新
      */
     @PutMapping("/{id}")
-    public ResponseEntity<Map<String, Object>> updateMessage(@PathVariable Long workerId, @PathVariable Long id, @RequestBody Message message) {
+    public ResponseEntity<Map<String, Object>> updateMessage(@PathVariable Long workerId, @PathVariable Long id,
+            @RequestBody Message message) {
         try {
             Optional<Message> existingMessage = messageRepository.findById(id);
             Map<String, Object> response = new HashMap<>();
@@ -159,4 +161,3 @@ public class MessageController {
         }
     }
 }
-

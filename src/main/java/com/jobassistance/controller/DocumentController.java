@@ -20,14 +20,19 @@ import java.util.Optional;
 @RequestMapping("/api/workers/{workerId}/documents")
 public class DocumentController {
 
+    /** ドキュメントリポジトリ */
     @Autowired
     private DocumentRepository documentRepository;
 
+    /** 就労者リポジトリ */
     @Autowired
     private WorkerRepository workerRepository;
 
     /**
-     * ドキュメント一覧取得
+     * 就労者のドキュメント一覧を取得する
+     * 
+     * @param workerId 就労者ID
+     * @return ドキュメント一覧を含むレスポンス
      */
     @GetMapping
     public ResponseEntity<Map<String, Object>> getDocumentList(@PathVariable Long workerId) {
@@ -53,10 +58,15 @@ public class DocumentController {
     }
 
     /**
-     * ドキュメント登録
+     * 新しいドキュメントを登録する
+     * 
+     * @param workerId 就労者ID
+     * @param document ドキュメント情報
+     * @return 作成されたドキュメントを含むレスポンス
      */
     @PostMapping
-    public ResponseEntity<Map<String, Object>> createDocument(@PathVariable Long workerId, @RequestBody Document document) {
+    public ResponseEntity<Map<String, Object>> createDocument(@PathVariable Long workerId,
+            @RequestBody Document document) {
         try {
             Optional<com.jobassistance.entity.Worker> worker = workerRepository.findById(workerId);
             if (!worker.isPresent()) {
@@ -81,7 +91,11 @@ public class DocumentController {
     }
 
     /**
-     * ドキュメント詳細取得
+     * 指定されたIDのドキュメント詳細を取得する
+     * 
+     * @param workerId 就労者ID
+     * @param id ドキュメントID
+     * @return ドキュメント詳細を含むレスポンス
      */
     @GetMapping("/{id}")
     public ResponseEntity<Map<String, Object>> getDocument(@PathVariable Long workerId, @PathVariable Long id) {
@@ -106,10 +120,16 @@ public class DocumentController {
     }
 
     /**
-     * ドキュメント更新
+     * ドキュメント情報を更新する
+     * 
+     * @param workerId 就労者ID
+     * @param id ドキュメントID
+     * @param document 更新するドキュメント情報
+     * @return 更新されたドキュメントを含むレスポンス
      */
     @PutMapping("/{id}")
-    public ResponseEntity<Map<String, Object>> updateDocument(@PathVariable Long workerId, @PathVariable Long id, @RequestBody Document document) {
+    public ResponseEntity<Map<String, Object>> updateDocument(@PathVariable Long workerId, @PathVariable Long id,
+            @RequestBody Document document) {
         try {
             Optional<Document> existingDocument = documentRepository.findById(id);
             Map<String, Object> response = new HashMap<>();
@@ -134,7 +154,11 @@ public class DocumentController {
     }
 
     /**
-     * ドキュメント削除
+     * ドキュメントを削除する
+     * 
+     * @param workerId 就労者ID
+     * @param id ドキュメントID
+     * @return 削除結果を含むレスポンス
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<Map<String, Object>> deleteDocument(@PathVariable Long workerId, @PathVariable Long id) {
@@ -159,4 +183,3 @@ public class DocumentController {
         }
     }
 }
-

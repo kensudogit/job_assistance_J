@@ -17,8 +17,8 @@ import java.util.List;
 @Entity
 @Table(name = "training_sessions")
 @Data
-@EqualsAndHashCode(exclude = {"worker", "trainingMenu", "kpiScores", "operationLogs"})
-@ToString(exclude = {"worker", "trainingMenu", "kpiScores", "operationLogs"})
+@EqualsAndHashCode(exclude = { "worker", "trainingMenu", "kpiScores", "operationLogs" })
+@ToString(exclude = { "worker", "trainingMenu", "kpiScores", "operationLogs" })
 @EntityListeners(AuditingEntityListener.class)
 public class TrainingSession {
 
@@ -66,4 +66,3 @@ public class TrainingSession {
     @OneToMany(mappedBy = "trainingSession", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OperationLog> operationLogs = new ArrayList<>();
 }
-

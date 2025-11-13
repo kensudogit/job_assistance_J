@@ -11,9 +11,8 @@ import java.util.List;
  */
 @Repository
 public interface JapaneseProficiencyRepository extends JpaRepository<JapaneseProficiency, Long> {
-    
+
     List<JapaneseProficiency> findByWorkerId(Long workerId);
-    
+
     List<JapaneseProficiency> findByWorkerIdAndTestType(Long workerId, String testType);
 }
-

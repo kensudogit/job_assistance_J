@@ -74,4 +74,3 @@ public class JapaneseProficiency {
     @Column(nullable = false)
     private LocalDateTime updatedAt;
 }
-

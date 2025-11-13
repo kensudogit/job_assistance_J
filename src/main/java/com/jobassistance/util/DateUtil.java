@@ -14,7 +14,11 @@ public class DateUtil {
     private static final DateTimeFormatter DATETIME_FORMATTER = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
 
     /**
-     * 文字列をLocalDateに変換
+     * 文字列をLocalDateに変換する
+     * 
+     * @param dateString 日付文字列（ISO形式: yyyy-MM-dd）
+     * @return 変換されたLocalDate（nullの場合はnullを返す）
+     * @throws IllegalArgumentException 無効な日付形式の場合
      */
     public static LocalDate parseDate(String dateString) {
         if (dateString == null || dateString.isEmpty()) {
@@ -28,7 +32,11 @@ public class DateUtil {
     }
 
     /**
-     * 文字列をLocalDateTimeに変換
+     * 文字列をLocalDateTimeに変換する
+     * 
+     * @param dateTimeString 日時文字列（ISO形式: yyyy-MM-ddTHH:mm:ss）
+     * @return 変換されたLocalDateTime（nullの場合はnullを返す）
+     * @throws IllegalArgumentException 無効な日時形式の場合
      */
     public static LocalDateTime parseDateTime(String dateTimeString) {
         if (dateTimeString == null || dateTimeString.isEmpty()) {
@@ -42,7 +50,10 @@ public class DateUtil {
     }
 
     /**
-     * LocalDateを文字列に変換
+     * LocalDateを文字列に変換する
+     * 
+     * @param date 日付
+     * @return フォーマットされた日付文字列（ISO形式: yyyy-MM-dd）（nullの場合はnullを返す）
      */
     public static String formatDate(LocalDate date) {
         if (date == null) {
@@ -52,7 +63,10 @@ public class DateUtil {
     }
 
     /**
-     * LocalDateTimeを文字列に変換
+     * LocalDateTimeを文字列に変換する
+     * 
+     * @param dateTime 日時
+     * @return フォーマットされた日時文字列（ISO形式: yyyy-MM-ddTHH:mm:ss）（nullの場合はnullを返す）
      */
     public static String formatDateTime(LocalDateTime dateTime) {
         if (dateTime == null) {
@@ -61,4 +75,3 @@ public class DateUtil {
         return dateTime.format(DATETIME_FORMATTER);
     }
 }
-

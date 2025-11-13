@@ -11,11 +11,10 @@ import java.util.List;
  */
 @Repository
 public interface ReportRepository extends JpaRepository<Report, Long> {
-    
+
     List<Report> findByWorkerId(Long workerId);
-    
+
     List<Report> findByWorkerIdIsNull();
-    
+
     List<Report> findByReportType(String reportType);
 }
-

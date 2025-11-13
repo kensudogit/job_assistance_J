@@ -21,12 +21,20 @@ import java.util.Optional;
 @RequestMapping("/api/workers/{workerId}/career-goals")
 public class CareerGoalController {
 
+    /** キャリア目標リポジトリ */
     @Autowired
     private CareerGoalRepository goalRepository;
 
+    /** 就労者リポジトリ */
     @Autowired
     private WorkerRepository workerRepository;
 
+    /**
+     * 就労者のキャリア目標一覧を取得する
+     * 
+     * @param workerId 就労者ID
+     * @return キャリア目標一覧を含むレスポンス
+     */
     @GetMapping
     public ResponseEntity<Map<String, Object>> getCareerGoals(@PathVariable Long workerId) {
         try {
@@ -51,8 +59,16 @@ public class CareerGoalController {
         }
     }
 
+    /**
+     * 新しいキャリア目標を作成する
+     * 
+     * @param workerId 就労者ID
+     * @param goalData キャリア目標データ
+     * @return 作成されたキャリア目標を含むレスポンス
+     */
     @PostMapping
-    public ResponseEntity<Map<String, Object>> createCareerGoal(@PathVariable Long workerId, @RequestBody Map<String, Object> goalData) {
+    public ResponseEntity<Map<String, Object>> createCareerGoal(@PathVariable Long workerId,
+            @RequestBody Map<String, Object> goalData) {
         try {
             Optional<Worker> worker = workerRepository.findById(workerId);
             if (!worker.isPresent()) {
@@ -95,8 +111,17 @@ public class CareerGoalController {
         }
     }
 
+    /**
+     * キャリア目標を更新する
+     * 
+     * @param workerId 就労者ID
+     * @param id キャリア目標ID
+     * @param goalData 更新するキャリア目標データ
+     * @return 更新されたキャリア目標を含むレスポンス
+     */
     @PutMapping("/{id}")
-    public ResponseEntity<Map<String, Object>> updateCareerGoal(@PathVariable Long workerId, @PathVariable Long id, @RequestBody Map<String, Object> goalData) {
+    public ResponseEntity<Map<String, Object>> updateCareerGoal(@PathVariable Long workerId, @PathVariable Long id,
+            @RequestBody Map<String, Object> goalData) {
         try {
             Optional<CareerGoal> goal = goalRepository.findById(id);
             if (!goal.isPresent() || !goal.get().getWorker().getId().equals(workerId)) {
@@ -136,6 +161,13 @@ public class CareerGoalController {
         }
     }
 
+    /**
+     * キャリア目標を削除する
+     * 
+     * @param workerId 就労者ID
+     * @param id キャリア目標ID
+     * @return 削除結果を含むレスポンス
+     */
     @DeleteMapping("/{id}")
     public ResponseEntity<Map<String, Object>> deleteCareerGoal(@PathVariable Long workerId, @PathVariable Long id) {
         try {
@@ -160,4 +192,3 @@ public class CareerGoalController {
         }
     }
 }
-

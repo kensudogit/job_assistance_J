@@ -81,4 +81,3 @@ public class ConstructionSimulatorTraining {
     @Column(nullable = false)
     private LocalDateTime updatedAt;
 }
-

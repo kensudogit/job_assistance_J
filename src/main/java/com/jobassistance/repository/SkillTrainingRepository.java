@@ -11,9 +11,8 @@ import java.util.List;
  */
 @Repository
 public interface SkillTrainingRepository extends JpaRepository<SkillTraining, Long> {
-    
+
     List<SkillTraining> findByWorkerId(Long workerId);
-    
+
     List<SkillTraining> findByWorkerIdAndSkillCategory(Long workerId, String skillCategory);
 }
-

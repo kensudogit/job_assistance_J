@@ -50,14 +50,14 @@ public class MFAController {
             user.setMfaSecret(mfaSecret);
 
             // QRコード用のURL生成（簡易版）
-            String qrCodeUrl = "otpauth://totp/JobAssistance:" + username + "?secret=" + mfaSecret + "&issuer=JobAssistance";
+            String qrCodeUrl = "otpauth://totp/JobAssistance:" + username + "?secret=" + mfaSecret
+                    + "&issuer=JobAssistance";
 
             Map<String, Object> response = new HashMap<>();
             response.put("success", true);
             response.put("data", Map.of(
-                "mfaSecret", mfaSecret,
-                "qrCodeUrl", qrCodeUrl
-            ));
+                    "mfaSecret", mfaSecret,
+                    "qrCodeUrl", qrCodeUrl));
             return ResponseEntity.ok(response);
         } catch (Exception e) {
             Map<String, Object> response = new HashMap<>();
@@ -208,4 +208,3 @@ public class MFAController {
         }
     }
 }
-

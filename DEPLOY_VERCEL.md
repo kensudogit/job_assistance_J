@@ -1,10 +1,16 @@
-# Vercelデプロイ手順（完全互換モード）
+# Vercelデプロイ手順（完全公開モード）
 
 ## 前提条件
 
 - Vercelアカウント（https://vercel.com）
 - GitHubリポジトリ（推奨）またはVercel CLI
 - バックエンドAPIのデプロイ先（Railway、Render、Fly.ioなど）
+
+## 完全公開モードについて
+
+完全公開モードでは、フロントエンドとバックエンドの両方を公開し、すべてのオリジンからのアクセスを許可します。
+- **CORS設定**: すべてのオリジンを許可（*）
+- **セキュリティ**: 適切な認証・認可を実装することを推奨
 
 ## デプロイ手順
 
@@ -27,18 +33,33 @@
    DB_PASSWORD=<自動生成>
    SERVER_PORT=5000
    SPRING_PROFILES_ACTIVE=production
+   CORS_ORIGINS=*
    ```
 8. デプロイ後、バックエンドAPIのURLを取得（例: `https://your-backend-api.railway.app`）
 
-### 2. バックエンドのCORS設定
+### 2. バックエンドのCORS設定（完全公開モード）
 
-バックエンドの`application.properties`または`application-prod.properties`でCORSを設定：
+バックエンドの`application-prod.properties`でCORSを設定：
 
 ```properties
-spring.web.cors.allowed-origins=https://your-vercel-app.vercel.app,https://your-custom-domain.com
-spring.web.cors.allowed-methods=GET,POST,PUT,DELETE,OPTIONS
+# 完全公開モード: すべてのオリジンを許可
+spring.web.cors.allowed-origins=*
+spring.web.cors.allowed-methods=GET,POST,PUT,DELETE,OPTIONS,PATCH
 spring.web.cors.allowed-headers=*
 spring.web.cors.allow-credentials=true
+spring.web.cors.max-age=86400
+```
+
+または、環境変数で設定：
+
+```env
+CORS_ORIGINS=*
+```
+
+**注意**: 完全公開モードではすべてのオリジンからのアクセスを許可します。本番環境では、特定のオリジンを指定することを推奨します：
+
+```env
+CORS_ORIGINS=https://your-app.vercel.app,https://your-custom-domain.com
 ```
 
 ### 3. フロントエンドをVercelにデプロイ

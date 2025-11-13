@@ -80,4 +80,3 @@ public class JapaneseLearningRecord {
     @Column(nullable = false)
     private LocalDateTime updatedAt;
 }
-

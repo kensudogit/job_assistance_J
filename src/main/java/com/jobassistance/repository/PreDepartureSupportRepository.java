@@ -11,9 +11,8 @@ import java.util.List;
  */
 @Repository
 public interface PreDepartureSupportRepository extends JpaRepository<PreDepartureSupport, Long> {
-    
+
     List<PreDepartureSupport> findByWorkerId(Long workerId);
-    
+
     List<PreDepartureSupport> findByWorkerIdAndStatus(Long workerId, String status);
 }
-

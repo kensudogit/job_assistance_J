@@ -80,4 +80,3 @@ public class SkillTraining {
     @Column(nullable = false)
     private LocalDateTime updatedAt;
 }
-

@@ -56,7 +56,8 @@ public class EvaluationController {
      * 評価登録
      */
     @PostMapping
-    public ResponseEntity<Map<String, Object>> createEvaluation(@PathVariable Long workerId, @RequestBody Evaluation evaluation) {
+    public ResponseEntity<Map<String, Object>> createEvaluation(@PathVariable Long workerId,
+            @RequestBody Evaluation evaluation) {
         try {
             Optional<com.jobassistance.entity.Worker> worker = workerRepository.findById(workerId);
             if (!worker.isPresent()) {
@@ -109,7 +110,8 @@ public class EvaluationController {
      * 評価更新
      */
     @PutMapping("/{id}")
-    public ResponseEntity<Map<String, Object>> updateEvaluation(@PathVariable Long workerId, @PathVariable Long id, @RequestBody Evaluation evaluation) {
+    public ResponseEntity<Map<String, Object>> updateEvaluation(@PathVariable Long workerId, @PathVariable Long id,
+            @RequestBody Evaluation evaluation) {
         try {
             Optional<Evaluation> existingEvaluation = evaluationRepository.findById(id);
             Map<String, Object> response = new HashMap<>();
@@ -159,4 +161,3 @@ public class EvaluationController {
         }
     }
 }
-

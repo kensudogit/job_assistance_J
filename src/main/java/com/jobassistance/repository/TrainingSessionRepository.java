@@ -12,11 +12,10 @@ import java.util.Optional;
  */
 @Repository
 public interface TrainingSessionRepository extends JpaRepository<TrainingSession, Long> {
-    
+
     Optional<TrainingSession> findBySessionId(String sessionId);
-    
+
     List<TrainingSession> findByWorkerId(Long workerId);
-    
+
     List<TrainingSession> findByTrainingMenuId(Long trainingMenuId);
 }
-

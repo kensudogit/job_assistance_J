@@ -70,10 +70,9 @@ public class FileUploadController {
             Map<String, Object> response = new HashMap<>();
             response.put("success", true);
             response.put("data", Map.of(
-                "documentId", savedDocument.getId(),
-                "fileName", fileName,
-                "fileSize", fileSize
-            ));
+                    "documentId", savedDocument.getId(),
+                    "fileName", fileName,
+                    "fileSize", fileSize));
             response.put("message", "File uploaded successfully");
             return ResponseEntity.ok(response);
         } catch (Exception e) {
@@ -129,10 +128,9 @@ public class FileUploadController {
             Map<String, Object> response = new HashMap<>();
             response.put("success", true);
             response.put("data", Map.of(
-                "documentId", savedDocument.getId(),
-                "fileName", fileName,
-                "fileSize", fileSize
-            ));
+                    "documentId", savedDocument.getId(),
+                    "fileName", fileName,
+                    "fileSize", fileSize));
             response.put("message", "Document uploaded successfully");
             return ResponseEntity.ok(response);
         } catch (Exception e) {
@@ -143,4 +141,3 @@ public class FileUploadController {
         }
     }
 }
-

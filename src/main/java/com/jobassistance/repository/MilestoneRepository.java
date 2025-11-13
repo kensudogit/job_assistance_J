@@ -11,7 +11,12 @@ import java.util.List;
  */
 @Repository
 public interface MilestoneRepository extends JpaRepository<Milestone, Long> {
-    
+
+    /**
+     * 就労者IDでマイルストーンを検索する
+     * 
+     * @param workerId 就労者ID
+     * @return 該当するマイルストーンのリスト
+     */
     List<Milestone> findByWorkerId(Long workerId);
 }
-

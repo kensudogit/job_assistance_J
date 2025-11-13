@@ -71,4 +71,3 @@ public class OperationLog {
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
 }
-

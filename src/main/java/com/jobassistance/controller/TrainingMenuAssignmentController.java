@@ -60,7 +60,8 @@ public class TrainingMenuAssignmentController {
      * 訓練メニュー割り当て登録
      */
     @PostMapping
-    public ResponseEntity<Map<String, Object>> createAssignment(@PathVariable Long workerId, @RequestBody TrainingMenuAssignment assignment) {
+    public ResponseEntity<Map<String, Object>> createAssignment(@PathVariable Long workerId,
+            @RequestBody TrainingMenuAssignment assignment) {
         try {
             Optional<com.jobassistance.entity.Worker> worker = workerRepository.findById(workerId);
             if (!worker.isPresent()) {
@@ -71,7 +72,8 @@ public class TrainingMenuAssignmentController {
             }
 
             if (assignment.getTrainingMenu() != null && assignment.getTrainingMenu().getId() != null) {
-                Optional<com.jobassistance.entity.TrainingMenu> trainingMenu = trainingMenuRepository.findById(assignment.getTrainingMenu().getId());
+                Optional<com.jobassistance.entity.TrainingMenu> trainingMenu = trainingMenuRepository
+                        .findById(assignment.getTrainingMenu().getId());
                 if (!trainingMenu.isPresent()) {
                     Map<String, Object> response = new HashMap<>();
                     response.put("success", false);
@@ -124,7 +126,8 @@ public class TrainingMenuAssignmentController {
      * 訓練メニュー割り当て更新
      */
     @PutMapping("/{id}")
-    public ResponseEntity<Map<String, Object>> updateAssignment(@PathVariable Long workerId, @PathVariable Long id, @RequestBody TrainingMenuAssignment assignment) {
+    public ResponseEntity<Map<String, Object>> updateAssignment(@PathVariable Long workerId, @PathVariable Long id,
+            @RequestBody TrainingMenuAssignment assignment) {
         try {
             Optional<TrainingMenuAssignment> existingAssignment = assignmentRepository.findById(id);
             Map<String, Object> response = new HashMap<>();
@@ -132,7 +135,8 @@ public class TrainingMenuAssignmentController {
                 assignment.setId(id);
                 assignment.setWorker(existingAssignment.get().getWorker());
                 if (assignment.getTrainingMenu() != null && assignment.getTrainingMenu().getId() != null) {
-                    Optional<com.jobassistance.entity.TrainingMenu> trainingMenu = trainingMenuRepository.findById(assignment.getTrainingMenu().getId());
+                    Optional<com.jobassistance.entity.TrainingMenu> trainingMenu = trainingMenuRepository
+                            .findById(assignment.getTrainingMenu().getId());
                     if (trainingMenu.isPresent()) {
                         assignment.setTrainingMenu(trainingMenu.get());
                     }
@@ -182,4 +186,3 @@ public class TrainingMenuAssignmentController {
         }
     }
 }
-

@@ -52,23 +52,23 @@ public class EvidenceReportController {
 
             // 証拠レポートデータを構築
             Map<String, Object> report = new HashMap<>();
-            
+
             // 基本情報
             report.put("workerId", workerId);
             report.put("workerName", worker.get().getName());
-            
+
             // デジタル証拠
             List<DigitalEvidence> evidences = evidenceRepository.findByWorkerId(workerId);
             report.put("digitalEvidences", evidences);
-            
+
             // 日本語能力証明
             long japaneseProficiencyCount = japaneseProficiencyRepository.findByWorkerId(workerId).size();
             report.put("japaneseProficiencyCount", japaneseProficiencyCount);
-            
+
             // 技能訓練証明
             long skillTrainingCount = skillTrainingRepository.findByWorkerId(workerId).size();
             report.put("skillTrainingCount", skillTrainingCount);
-            
+
             // シミュレーター訓練証明
             long simulatorTrainingCount = simulatorTrainingRepository.findByWorkerId(workerId).size();
             report.put("simulatorTrainingCount", simulatorTrainingCount);
@@ -85,4 +85,3 @@ public class EvidenceReportController {
         }
     }
 }
-

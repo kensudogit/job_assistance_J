@@ -11,7 +11,12 @@ import java.util.List;
  */
 @Repository
 public interface CareerGoalRepository extends JpaRepository<CareerGoal, Long> {
-    
+
+    /**
+     * 就労者IDでキャリア目標を検索する
+     * 
+     * @param workerId 就労者ID
+     * @return 該当するキャリア目標のリスト
+     */
     List<CareerGoal> findByWorkerId(Long workerId);
 }
-

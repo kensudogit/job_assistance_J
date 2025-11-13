@@ -11,9 +11,8 @@ import java.util.List;
  */
 @Repository
 public interface WorkerProgressRepository extends JpaRepository<WorkerProgress, Long> {
-    
+
     List<WorkerProgress> findByWorkerId(Long workerId);
-    
+
     List<WorkerProgress> findByWorkerIdAndProgressType(Long workerId, String progressType);
 }
-

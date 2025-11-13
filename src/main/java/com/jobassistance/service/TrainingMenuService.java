@@ -16,46 +16,64 @@ import java.util.Optional;
 @Transactional
 public class TrainingMenuService {
 
+    /** 訓練メニューリポジトリ */
     @Autowired
     private TrainingMenuRepository trainingMenuRepository;
 
     /**
-     * 訓練メニュー一覧取得
+     * すべての訓練メニュー一覧を取得する
+     * 
+     * @return 訓練メニューのリスト
      */
     public List<TrainingMenu> getAllTrainingMenus() {
         return trainingMenuRepository.findAll();
     }
 
     /**
-     * 有効な訓練メニュー一覧取得
+     * 有効な訓練メニュー一覧を取得する
+     * 
+     * @return 有効な訓練メニューのリスト
      */
     public List<TrainingMenu> getActiveTrainingMenus() {
         return trainingMenuRepository.findByIsActiveTrue();
     }
 
     /**
-     * 難易度で検索
+     * 難易度で訓練メニューを検索する
+     * 
+     * @param difficultyLevel 難易度
+     * @return 該当する訓練メニューのリスト
      */
     public List<TrainingMenu> searchByDifficultyLevel(String difficultyLevel) {
         return trainingMenuRepository.findByDifficultyLevel(difficultyLevel);
     }
 
     /**
-     * 訓練メニュー登録
+     * 新しい訓練メニューを登録する
+     * 
+     * @param menu 訓練メニュー情報
+     * @return 作成された訓練メニュー
      */
     public TrainingMenu createTrainingMenu(TrainingMenu menu) {
         return trainingMenuRepository.save(menu);
     }
 
     /**
-     * 訓練メニュー詳細取得
+     * 指定されたIDの訓練メニュー詳細を取得する
+     * 
+     * @param id 訓練メニューID
+     * @return 訓練メニュー（存在しない場合は空）
      */
     public Optional<TrainingMenu> getTrainingMenuById(Long id) {
         return trainingMenuRepository.findById(id);
     }
 
     /**
-     * 訓練メニュー更新
+     * 訓練メニュー情報を更新する
+     * 
+     * @param id 訓練メニューID
+     * @param menu 更新する訓練メニュー情報
+     * @return 更新された訓練メニュー
      */
     public TrainingMenu updateTrainingMenu(Long id, TrainingMenu menu) {
         menu.setId(id);
@@ -63,7 +81,9 @@ public class TrainingMenuService {
     }
 
     /**
-     * 訓練メニュー削除
+     * 訓練メニューを削除する
+     * 
+     * @param id 訓練メニューID
      */
     public void deleteTrainingMenu(Long id) {
         trainingMenuRepository.deleteById(id);

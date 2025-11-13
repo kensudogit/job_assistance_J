@@ -16,7 +16,10 @@ import java.util.Map;
 public class GlobalExceptionHandler {
 
     /**
-     * 一般的な例外のハンドリング
+     * 一般的な例外をハンドリングする
+     * 
+     * @param e 例外
+     * @return エラーレスポンス（HTTP 500）
      */
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Map<String, Object>> handleException(Exception e) {
@@ -28,7 +31,10 @@ public class GlobalExceptionHandler {
     }
 
     /**
-     * IllegalArgumentExceptionのハンドリング
+     * IllegalArgumentExceptionをハンドリングする
+     * 
+     * @param e 例外
+     * @return エラーレスポンス（HTTP 400）
      */
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<Map<String, Object>> handleIllegalArgumentException(IllegalArgumentException e) {
@@ -40,10 +46,14 @@ public class GlobalExceptionHandler {
     }
 
     /**
-     * MethodArgumentTypeMismatchExceptionのハンドリング
+     * MethodArgumentTypeMismatchExceptionをハンドリングする
+     * 
+     * @param e 例外
+     * @return エラーレスポンス（HTTP 400）
      */
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
-    public ResponseEntity<Map<String, Object>> handleMethodArgumentTypeMismatchException(MethodArgumentTypeMismatchException e) {
+    public ResponseEntity<Map<String, Object>> handleMethodArgumentTypeMismatchException(
+            MethodArgumentTypeMismatchException e) {
         Map<String, Object> response = new HashMap<>();
         response.put("success", false);
         response.put("error", "Invalid parameter type: " + e.getName());
@@ -52,7 +62,10 @@ public class GlobalExceptionHandler {
     }
 
     /**
-     * NullPointerExceptionのハンドリング
+     * NullPointerExceptionをハンドリングする
+     * 
+     * @param e 例外
+     * @return エラーレスポンス（HTTP 400）
      */
     @ExceptionHandler(NullPointerException.class)
     public ResponseEntity<Map<String, Object>> handleNullPointerException(NullPointerException e) {
@@ -63,4 +76,3 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
     }
 }
-

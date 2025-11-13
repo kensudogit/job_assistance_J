@@ -12,11 +12,10 @@ import java.util.List;
  */
 @Repository
 public interface CalendarEventRepository extends JpaRepository<CalendarEvent, Long> {
-    
+
     List<CalendarEvent> findByWorkerId(Long workerId);
-    
+
     List<CalendarEvent> findByWorkerIdIsNull();
-    
+
     List<CalendarEvent> findByStartDatetimeBetween(LocalDateTime start, LocalDateTime end);
 }
-

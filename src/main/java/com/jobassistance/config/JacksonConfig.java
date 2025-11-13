@@ -13,6 +13,13 @@ import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 @Configuration
 public class JacksonConfig {
 
+    /**
+     * ObjectMapperを設定する
+     * JavaTimeModuleを登録して、LocalDateやLocalDateTimeを適切にシリアライズ/デシリアライズできるようにする
+     * 
+     * @param builder Jackson2ObjectMapperBuilder
+     * @return 設定されたObjectMapper
+     */
     @Bean
     @Primary
     public ObjectMapper objectMapper(Jackson2ObjectMapperBuilder builder) {
@@ -21,4 +28,3 @@ public class JacksonConfig {
                 .build();
     }
 }
-

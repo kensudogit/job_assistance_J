@@ -14,6 +14,14 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
 
+    /**
+     * セキュリティフィルターチェーンを設定する
+     * CSRF保護を無効化し、すべてのリクエストを許可する
+     * 
+     * @param http HttpSecurityオブジェクト
+     * @return 設定されたSecurityFilterChain
+     * @throws Exception 設定エラー
+     */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http

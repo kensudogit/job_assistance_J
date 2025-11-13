@@ -17,8 +17,8 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "training_enrollments")
 @Data
-@EqualsAndHashCode(exclude = {"worker", "training"})
-@ToString(exclude = {"worker", "training"})
+@EqualsAndHashCode(exclude = { "worker", "training" })
+@ToString(exclude = { "worker", "training" })
 @EntityListeners(AuditingEntityListener.class)
 public class TrainingEnrollment {
 
@@ -60,4 +60,3 @@ public class TrainingEnrollment {
     @Column(nullable = false)
     private LocalDateTime updatedAt;
 }
-

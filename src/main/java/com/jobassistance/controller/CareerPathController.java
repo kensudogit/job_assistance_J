@@ -21,12 +21,20 @@ import java.util.Optional;
 @RequestMapping("/api/workers/{workerId}/career-paths")
 public class CareerPathController {
 
+    /** キャリアパスリポジトリ */
     @Autowired
     private CareerPathRepository careerPathRepository;
 
+    /** 就労者リポジトリ */
     @Autowired
     private WorkerRepository workerRepository;
 
+    /**
+     * 就労者のキャリアパス一覧を取得する
+     * 
+     * @param workerId 就労者ID
+     * @return キャリアパス一覧を含むレスポンス
+     */
     @GetMapping
     public ResponseEntity<Map<String, Object>> getCareerPaths(@PathVariable Long workerId) {
         try {
@@ -51,8 +59,16 @@ public class CareerPathController {
         }
     }
 
+    /**
+     * 新しいキャリアパスを作成する
+     * 
+     * @param workerId 就労者ID
+     * @param careerPathData キャリアパスデータ
+     * @return 作成されたキャリアパスを含むレスポンス
+     */
     @PostMapping
-    public ResponseEntity<Map<String, Object>> createCareerPath(@PathVariable Long workerId, @RequestBody Map<String, Object> careerPathData) {
+    public ResponseEntity<Map<String, Object>> createCareerPath(@PathVariable Long workerId,
+            @RequestBody Map<String, Object> careerPathData) {
         try {
             Optional<Worker> worker = workerRepository.findById(workerId);
             if (!worker.isPresent()) {
@@ -102,8 +118,17 @@ public class CareerPathController {
         }
     }
 
+    /**
+     * キャリアパスを更新する
+     * 
+     * @param workerId 就労者ID
+     * @param id キャリアパスID
+     * @param careerPathData 更新するキャリアパスデータ
+     * @return 更新されたキャリアパスを含むレスポンス
+     */
     @PutMapping("/{id}")
-    public ResponseEntity<Map<String, Object>> updateCareerPath(@PathVariable Long workerId, @PathVariable Long id, @RequestBody Map<String, Object> careerPathData) {
+    public ResponseEntity<Map<String, Object>> updateCareerPath(@PathVariable Long workerId, @PathVariable Long id,
+            @RequestBody Map<String, Object> careerPathData) {
         try {
             Optional<CareerPath> careerPath = careerPathRepository.findById(id);
             if (!careerPath.isPresent() || !careerPath.get().getWorker().getId().equals(workerId)) {
@@ -146,6 +171,13 @@ public class CareerPathController {
         }
     }
 
+    /**
+     * キャリアパスを削除する
+     * 
+     * @param workerId 就労者ID
+     * @param id キャリアパスID
+     * @return 削除結果を含むレスポンス
+     */
     @DeleteMapping("/{id}")
     public ResponseEntity<Map<String, Object>> deleteCareerPath(@PathVariable Long workerId, @PathVariable Long id) {
         try {
@@ -170,4 +202,3 @@ public class CareerPathController {
         }
     }
 }
-

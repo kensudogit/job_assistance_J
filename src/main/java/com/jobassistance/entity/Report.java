@@ -54,4 +54,3 @@ public class Report {
     @Column(nullable = false, updatable = false)
     private LocalDateTime generatedAt;
 }
-

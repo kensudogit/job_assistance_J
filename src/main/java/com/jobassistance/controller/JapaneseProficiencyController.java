@@ -56,7 +56,8 @@ public class JapaneseProficiencyController {
      * 日本語能力登録
      */
     @PostMapping
-    public ResponseEntity<Map<String, Object>> createProficiency(@PathVariable Long workerId, @RequestBody JapaneseProficiency proficiency) {
+    public ResponseEntity<Map<String, Object>> createProficiency(@PathVariable Long workerId,
+            @RequestBody JapaneseProficiency proficiency) {
         try {
             Optional<com.jobassistance.entity.Worker> worker = workerRepository.findById(workerId);
             if (!worker.isPresent()) {
@@ -109,7 +110,8 @@ public class JapaneseProficiencyController {
      * 日本語能力更新
      */
     @PutMapping("/{id}")
-    public ResponseEntity<Map<String, Object>> updateProficiency(@PathVariable Long workerId, @PathVariable Long id, @RequestBody JapaneseProficiency proficiency) {
+    public ResponseEntity<Map<String, Object>> updateProficiency(@PathVariable Long workerId, @PathVariable Long id,
+            @RequestBody JapaneseProficiency proficiency) {
         try {
             Optional<JapaneseProficiency> existingProficiency = proficiencyRepository.findById(id);
             Map<String, Object> response = new HashMap<>();
@@ -159,4 +161,3 @@ public class JapaneseProficiencyController {
         }
     }
 }
-

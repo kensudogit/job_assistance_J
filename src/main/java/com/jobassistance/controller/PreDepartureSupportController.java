@@ -56,7 +56,8 @@ public class PreDepartureSupportController {
      * 来日前支援登録
      */
     @PostMapping
-    public ResponseEntity<Map<String, Object>> createPreDepartureSupport(@PathVariable Long workerId, @RequestBody PreDepartureSupport support) {
+    public ResponseEntity<Map<String, Object>> createPreDepartureSupport(@PathVariable Long workerId,
+            @RequestBody PreDepartureSupport support) {
         try {
             Optional<com.jobassistance.entity.Worker> worker = workerRepository.findById(workerId);
             if (!worker.isPresent()) {
@@ -84,7 +85,8 @@ public class PreDepartureSupportController {
      * 来日前支援詳細取得
      */
     @GetMapping("/{id}")
-    public ResponseEntity<Map<String, Object>> getPreDepartureSupport(@PathVariable Long workerId, @PathVariable Long id) {
+    public ResponseEntity<Map<String, Object>> getPreDepartureSupport(@PathVariable Long workerId,
+            @PathVariable Long id) {
         try {
             Optional<PreDepartureSupport> support = preDepartureSupportRepository.findById(id);
             Map<String, Object> response = new HashMap<>();
@@ -109,7 +111,8 @@ public class PreDepartureSupportController {
      * 来日前支援更新
      */
     @PutMapping("/{id}")
-    public ResponseEntity<Map<String, Object>> updatePreDepartureSupport(@PathVariable Long workerId, @PathVariable Long id, @RequestBody PreDepartureSupport support) {
+    public ResponseEntity<Map<String, Object>> updatePreDepartureSupport(@PathVariable Long workerId,
+            @PathVariable Long id, @RequestBody PreDepartureSupport support) {
         try {
             Optional<PreDepartureSupport> existingSupport = preDepartureSupportRepository.findById(id);
             Map<String, Object> response = new HashMap<>();
@@ -137,7 +140,8 @@ public class PreDepartureSupportController {
      * 来日前支援削除
      */
     @DeleteMapping("/{id}")
-    public ResponseEntity<Map<String, Object>> deletePreDepartureSupport(@PathVariable Long workerId, @PathVariable Long id) {
+    public ResponseEntity<Map<String, Object>> deletePreDepartureSupport(@PathVariable Long workerId,
+            @PathVariable Long id) {
         try {
             Optional<PreDepartureSupport> support = preDepartureSupportRepository.findById(id);
             Map<String, Object> response = new HashMap<>();
@@ -159,4 +163,3 @@ public class PreDepartureSupportController {
         }
     }
 }
-
